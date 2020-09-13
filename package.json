@@ -1,0 +1,24 @@
+{
+	"name": "nursinghome",
+	"version": "0.0.1",
+	"description": "web application for nursing home",
+	"main": "app.js",
+	"scripts": {
+		"start": "nodemon app"
+	},
+	"author": "hsyeon4001",
+	"license": "MIT",
+	"dependencies": {
+		"connect-flash": "^0.1.1",
+		"dotenv": "^8.2.0",
+		"ejs": "^3.1.5",
+		"express": "^4.17.1",
+		"express-session": "^1.17.1",
+		"morgan": "^1.10.0",
+		"mysql2": "^2.1.0",
+		"sequelize": "^6.3.5"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.4"
+	}
+}

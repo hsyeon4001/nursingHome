@@ -1,0 +1,32 @@
+.screen-header > header {
+	width: 100%;
+	height: 90px;
+	background-color: whitesmoke;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed;
+	top: 45px;
+}
+
+.screen-header__main-link {
+	font-size: 30px;
+	font-weight: 900;
+}
+
+.screen-header__menu {
+	width: 400px;
+	display: flex;
+	justify-content: space-around;
+	border: 1px solid green;
+	position: relative;
+}
+
+.screen-header__submenu {
+	display: none;
+	position: absolute;
+}
+
+.screen-header__menu > ul:hover .screen-header__submenu {
+	display: block;
+}

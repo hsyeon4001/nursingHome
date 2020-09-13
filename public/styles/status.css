@@ -1,0 +1,10 @@
+.status-bar {
+	width: 100%;
+	height: 45px;
+	background-color: #3a2154;
+	position: fixed;
+}
+
+.status-bar__login-form {
+	float: right;
+}
