@@ -5,6 +5,7 @@ const flash = require("connect-flash");
 require("dotenv").config();
 
 const pageRouter = require("./routes/page");
+const { sequelize } = require("./models");
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(flash());
 
 app.use("/", pageRouter);
+
+sequelize.sync();
 
 app.use((req, res, next) => {
 	const err = new Error("Not Found");

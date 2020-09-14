@@ -1,4 +1,4 @@
-.screen-header > header {
+.header > div {
 	width: 100%;
 	height: 90px;
 	background-color: whitesmoke;
@@ -9,12 +9,12 @@
 	top: 45px;
 }
 
-.screen-header__main-link {
+.header__main-link {
 	font-size: 30px;
 	font-weight: 900;
 }
 
-.screen-header__menu {
+.header__menu {
 	width: 400px;
 	display: flex;
 	justify-content: space-around;
@@ -22,11 +22,11 @@
 	position: relative;
 }
 
-.screen-header__submenu {
+.submenu {
 	display: none;
 	position: absolute;
 }
 
-.screen-header__menu > ul:hover .screen-header__submenu {
+.mainmenu > ul:hover .submenu {
 	display: block;
 }

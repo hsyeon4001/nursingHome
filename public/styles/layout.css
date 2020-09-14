@@ -1,0 +1,14 @@
+/* Layout */
+@import "status.css";
+@import "header.css";
+@import "nav.css";
+@import "footer.css";
+
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;900&display=swap");
+
+/* Layout default styles */
+body {
+	background-color: whitesmoke;
+	font-family: "Noto Sans KR", sans-serif;
+}

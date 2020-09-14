@@ -1,4 +1,4 @@
-.screen-footer > footer {
+.footer > div {
 	width: 100%;
 	height: 90px;
 	background-color: #1f1f1f;
@@ -8,6 +8,6 @@
 	align-items: center;
 }
 
-.screen-footer__place > span {
+.footer__place > span {
 	display: block;
 }
