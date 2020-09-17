@@ -14,14 +14,20 @@
 			crossorigin="anonymous"
 		/>
 		<link rel="stylesheet" href="styles/layout.css" />
-		<link rel="stylesheet" href="styles/gallery.css" />
 		<title>gallery</title>
 	</head>
 	<body>
 		<div class="status-bar"><%- include ("../public/status.html") %></div>
 		<header class="header"><%- include ("../public/header.html") %></header>
 		<nav class="nav"><%- include ("../public/nav.html") %></nav>
-		<main></main>
+
+		<main>
+			<div class="screen-menu">
+				<%- include ("../public/screen-menu.html") %>
+			</div>
+			<div class="board"><%- include ("layout/board.ejs") %></div>
+		</main>
+
 		<footer class="footer"><%- include ("../public/footer.html") %></footer>
 	</body>
 </html>

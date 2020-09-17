@@ -1,0 +1,8 @@
+.nav {
+	width: 30px;
+	height: 100px;
+	background-color: palevioletred;
+	position: fixed;
+	right: 0;
+	top: 150px;
+}

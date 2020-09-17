@@ -27,6 +27,6 @@
 	position: absolute;
 }
 
-.mainmenu > ul:hover .submenu {
+.header__menu > ul > li:hover .submenu {
 	display: block;
 }
