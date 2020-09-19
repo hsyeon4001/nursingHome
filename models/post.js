@@ -1,33 +1,42 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, Sequelize) => {
 	return sequelize.define(
 		"post",
 		{
 			postId: {
-				type: DataTypes.INTEGER,
+				type: Sequelize.INTEGER,
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 			},
 			category: {
-				type: DataTypes.INTEGER(4),
+				type: Sequelize.INTEGER(4),
 				allowNull: false,
 			},
 			title: {
-				type: DataTypes.STRING(20),
+				type: Sequelize.STRING(20),
 				allowNull: false,
 			},
 			description: {
-				type: DataTypes.TEXT,
+				type: Sequelize.TEXT,
 				allowNull: false,
 			},
 			img: {
-				type: DataTypes.STRING(100),
+				type: Sequelize.STRING(100),
 				allowNull: true,
+			},
+			created_at: {
+				type: Sequelize.DATE,
+				allowNull: false,
+				defaultValue: Sequelize.literal("NOW()"),
+			},
+			updated_at: {
+				type: Sequelize.DATE,
+				allowNull: false,
+				defaultValue: Sequelize.literal("NOW()"),
 			},
 		},
 		{
-			timestamps: true,
-			paranoid: true,
+			timestamps: false,
 			charset: "utf8",
 			collate: "utf8_general_ci",
 		}

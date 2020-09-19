@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=4.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+			integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="styles/layout.css" />
+		<link rel="stylesheet" href="styles/join.css" />
+		<title>Join</title>
+	</head>
+	<body>
+		<div class="status-bar"><%- include ("../public/status.html") %></div>
+		<header class="header"><%- include ("../public/header.html") %></header>
+		<nav class="nav"><%- include ("../public/nav.html") %></nav>
+
+		<main>
+			<div class="screen-menu">
+				<%- include ("../public/screen-menu.html") %>
+			</div>
+			<div class="join">
+				<form action="/join" method="POST">
+					<input type="text" placeholder="아이디" name="id" id="id" />
+					<input
+						type="password"
+						placeholder="비밀번호"
+						name="password"
+						id="password"
+					/>
+					<input type="text" placeholder="이름" name="name" id="name" />
+					<div>
+						<input
+							type="radio"
+							id="jobChoice1"
+							name="job"
+							value="social_worker"
+						/>
+						<label for="jobChoice1">사회복지사</label>
+						<input
+							type="radio"
+							id="jobChoice2"
+							name="job"
+							value="nutritionist"
+						/>
+						<label for="jobChoice2">영양사</label>
+						<input type="radio" id="jobChoice3" name="job" value="nurse" />
+						<label for="jobChoice3">간호사</label>
+					</div>
+					<input type="submit" />
+				</form>
+			</div>
+		</main>
+
+		<footer class="footer"><%- include ("../public/footer.html") %></footer>
+	</body>
+</html>

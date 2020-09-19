@@ -6,7 +6,7 @@
 
 .board > ul {
 	width: 1300px;
-	height: 1000px;
+	height: 800px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;

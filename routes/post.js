@@ -35,7 +35,12 @@ const upload = multer({
 const upload2 = multer();
 router.post("/", upload.single("url"), async (req, res, next) => {
 	console.log(req.file, req.body);
-	const url = `/uploads/${req.file.filename}`;
+	let url = ``;
+	if (req.file) {
+		url = `/uploads/${req.file.filename}`;
+	}
+	// const url = `/uploads/${req.file.filename}`;
+
 	try {
 		await Post.create({
 			category: 1,

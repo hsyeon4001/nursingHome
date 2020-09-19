@@ -1,0 +1,18 @@
+.page {
+	position: absolute;
+	top: 1200px;
+	left: 680px;
+}
+
+.page > ul {
+	width: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.page__number {
+	width: 100px;
+	display: flex;
+	justify-content: space-evenly;
+}

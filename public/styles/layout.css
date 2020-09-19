@@ -5,6 +5,7 @@
 @import "footer.css";
 @import "screen-menu.css";
 @import "board.css";
+@import "page.css";
 
 /* Font */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;900&display=swap");

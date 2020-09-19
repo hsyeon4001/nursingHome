@@ -6,6 +6,8 @@ require("dotenv").config();
 
 const pageRouter = require("./routes/page");
 const postRouter = require("./routes/post");
+const joinRouter = require("./routes/join");
+
 const { sequelize } = require("./models");
 
 const app = express();
@@ -18,12 +20,13 @@ app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(flash());
 
 app.use("/", pageRouter);
 app.use("/post", postRouter);
+app.use("/join", joinRouter);
 
 sequelize.sync();
 

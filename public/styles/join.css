@@ -1,0 +1,16 @@
+.join {
+	width: 100%;
+	height: 500px;
+	background-color: green;
+	position: absolute;
+	top: 335px;
+}
+
+.join > form {
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	top: 50px;
+	left: 100px;
+}
