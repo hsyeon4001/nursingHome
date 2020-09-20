@@ -6,8 +6,7 @@ const { Post, User } = require("../models");
 
 const router = express.Router();
 
-router.post("/join", async (req, res, next) => {
-	console.log("here");
+router.post("/", async (req, res, next) => {
 	try {
 		await User.create({
 			id: req.body.id,

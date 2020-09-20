@@ -1,5 +1,7 @@
 const express = require("express");
+const passport = require("passport");
 const { Post, User } = require("../models");
+const authTokenController = require("./authTokenController.js");
 
 const router = express.Router();
 
@@ -43,11 +45,18 @@ router.get("/gallery", async (req, res) => {
 	}
 });
 
-router.get("/post", (req, res) => {
-	res.render("post");
-});
+router.get(
+	"/post",
+	passport.authenticate("jwt", { session: false }),
+	(req, res) => {
+		res.render("post");
+	}
+);
 
 router.get("/join", (req, res) => {
 	res.render("join");
 });
+
+router.post("/auth/tokens", authTokenController.create);
+
 module.exports = router;
