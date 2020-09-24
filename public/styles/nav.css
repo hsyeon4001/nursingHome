@@ -1,8 +1,24 @@
 .nav {
-	width: 30px;
-	height: 100px;
-	background-color: palevioletred;
+	width: 45px;
+	height: 140px;
+	background-color: whitesmoke;
 	position: fixed;
 	right: 0;
-	top: 150px;
+	top: 180px;
+	box-shadow: 5px 5px 5px grey;
+}
+
+.nav__btns {
+	width: inherit;
+	height: inherit;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.nav__btns i {
+	color: var(--dark);
+	font-size: 25px;
+	/* font-weight: lighter; */
 }

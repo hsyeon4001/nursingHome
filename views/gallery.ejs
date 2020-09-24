@@ -1,73 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-			integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-			crossorigin="anonymous"
-		/>
-		<link rel="stylesheet" href="styles/layout.css" />
-		<title>gallery</title>
-	</head>
-	<body>
-		<div class="status-bar"><%- include ("../public/status.html") %></div>
-		<header class="header"><%- include ("../public/header.html") %></header>
-		<nav class="nav"><%- include ("../public/nav.html") %></nav>
 
-		<main>
-			<div class="screen-menu">
-				<%- include ("../public/screen-menu.html") %>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+		integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+	<link rel="stylesheet" href="/styles/layout.css" />
+	<link rel="stylesheet" href="/styles/sub.css" />
+	<title><%= sub %></title>
+
+</head>
+
+<body>
+	<div class="status-bar"><%- include ("../public/status.html") %></div>
+	<header class="header"><%- include ("../public/header.html") %></header>
+	<nav class="nav"><%- include ("../public/nav.html") %></nav>
+	<main class="sub">
+		<section class="sub__img-section">
+			<div class="sub__img-section--img">
+				<img src="/images/cat9.jpg" alt="" />
 			</div>
-			<div class="board"><%- include ("layout/board.ejs") %></div>
-			<div class="page"><%- include ("../public/page.html") %></div>
-		</main>
+			<div class="sub__img-section--text">
+				<div class="sub__img-section--headline">
+					<span>메인 > <%= path %></span>
+					<span><%= headline %></span>
+				</div>
+			</div>
+		</section>
+		<div class="board"><%- include ("layout/board.ejs") %></div>
+		<div class="page"><%- include ("../public/page.html") %></div>
+	</main>
 
-		<footer class="footer"><%- include ("../public/footer.html") %></footer>
-		<script>
-			const prev = document.querySelector(".page__prev");
-			const next = document.querySelector(".page__next");
-			const nums = document.querySelector(".page__number");
-			const firstNum = document.querySelector(".page__number")
-				.firstElementChild;
-			const lastNum = document.querySelector(".page__number").lastElementChild;
+	<footer class="footer"><%- include ("../public/footer.html") %></footer>
+	<script>
+		const prev = document.querySelector(".page__prev");
+		const next = document.querySelector(".page__next");
+		const nums = document.querySelector(".page__number");
+		const firstNum = document.querySelector(".page__number")
+			.firstElementChild;
+		const lastNum = document.querySelector(".page__number").lastElementChild;
+		const posts = document.querySelectorAll(".board__post");
 
-			const posts = parseInt("<%= posts %>");
-			const remainPost = posts % 6;
-			let maxPage = Math.floor(posts / 6);
+		const postCnt = parseInt("<%= posts %>");
+		const remainPost = postCnt % 6;
+		let maxPage = Math.floor(postCnt / 6);
+		const link = document.location.href;
 
-			if (posts < 30) {
-				if (remainPost !== 0) {
-					maxPage += 1;
-				}
-				console.log(maxPage);
-				for (i = 4; i > maxPage - 1; i--) {
-					nums.removeChild(nums.children[i]);
+		if (postCnt < 30) {
+			if (remainPost !== 0) {
+				maxPage += 1;
+			}
+			for (i = 4; i > maxPage - 1; i--) {
+				nums.removeChild(nums.children[i]);
+			}
+		}
+
+		prev.addEventListener("click", function (e) {
+			if (parseInt(firstNum.innerText) !== 1) {
+				for (i = 0; i < nums.length; i++) {
+					let pageNum = parseInt(nums.children[i].innerText);
+					nums.children[i].innerText = pageNum - 5;
 				}
 			}
+		});
+		next.addEventListener("click", function (e) {
+			if (parseInt(lastNum.innerText) !== maxPage) {
+				for (i = 0; i < nums.length; i++) {
+					let pageNum = parseInt(nums.children[i].innerText);
+					nums.children[i].innerText = pageNum + 5;
+				}
+			}
+		});
 
-			prev.addEventListener("click", function (e) {
-				if (parseInt(firstNum.innerText) !== 1) {
-					for (i = 0; i < nums.length; i++) {
-						let pageNum = parseInt(nums.children[i].innerText);
-						nums.children[i].innerText = pageNum - 5;
-					}
-				}
-			});
-			next.addEventListener("click", function (e) {
-				if (parseInt(lastNum.innerText) !== maxPage) {
-					for (i = 0; i < nums.length; i++) {
-						let pageNum = parseInt(nums.children[i].innerText);
-						nums.children[i].innerText = pageNum + 5;
-					}
-				}
-			});
-		</script>
-	</body>
+		Array.prototype.forEach.call(nums, num => {
+			num.setAttribute('href', '/gallery/' + nums.indexOf(num));
+		});
+
+		Array.prototype.forEach.call(posts, post => {
+			let pid = post.value;
+			post.firstElementChild.setAttribute('href', link + '/' + pid);
+		});
+	</script>
+</body>
+
 </html>

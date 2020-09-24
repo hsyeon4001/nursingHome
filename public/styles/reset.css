@@ -1,0 +1,27 @@
+/* a style */
+a {
+	color: #fff;
+	text-decoration: none;
+	outline: none;
+}
+
+/* common input style */
+input {
+	color: inherit; /* 1 */
+	font: inherit; /* 2 */
+	margin: 0; /* 3 */
+	outline: none;
+}
+
+/* button, submit style */
+button {
+	border: 0 none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+input[type="submit"] {
+	-webkit-appearance: button; /* 2 */
+	cursor: pointer; /* 3 */
+	font-family: "FontAwesome";
+}

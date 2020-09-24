@@ -6,12 +6,29 @@
 @import "screen-menu.css";
 @import "board.css";
 @import "page.css";
+@import "reset.css";
+
+/* Variables */
+@import "variables.css";
 
 /* Font */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;900&display=swap");
+@font-face {
+	font-family: "JSDongkang-Bold";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "JSDongkang-Regular";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
 
 /* Layout default styles */
 body {
 	background-color: whitesmoke;
-	font-family: "Noto Sans KR", sans-serif;
+	font-family: "JSDongkang-Bold", sans-serif;
 }

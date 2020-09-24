@@ -5,38 +5,82 @@
 	z-index: -1;
 }
 
-.main__img-section > img {
+.main__img-section--img {
 	display: block;
 	margin: auto;
 	width: 100%;
 	height: 600px;
+	overflow: hidden;
 }
 
-.main__img-section-text {
+.main__img-section--img > img {
+	width: 100%;
+	height: auto;
+}
+
+.main__img-section--text {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	position: absolute;
 	top: 300px;
+	margin: var(--main-margin);
 }
 
-.main__img-section-title {
+.main__img-section--headline {
+	display: flex;
+	flex-direction: column;
+	color: whitesmoke;
+}
+
+.main__img-section--headline > span:first-child {
+	font-size: 20px;
+}
+
+.main__img-section--headline > span:last-child {
 	font-size: 50px;
+	margin: 15px 0;
+	position: relative;
+	left: -5px;
 }
 
-.main__img-section-circles {
+.main__img-section--btns > button {
+	font-family: "JSDongkang-Bold";
+	font-size: 20px;
+	width: 150px;
+	height: 50px;
+	margin: 25px 7px;
+}
+
+.main__img-section--btns > button:first-child {
+	background-color: var(--mint);
+	color: whitesmoke;
+}
+
+.main__img-section--btns > button:last-child {
+	background-color: whitesmoke;
+	color: var(--mint);
+}
+
+.main__img-section--circles {
 	height: 100px;
 	margin: 10px 40px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	position: relative;
+	right: 200px;
 }
 
-.main__img-section-circles > div {
+.main__img-section--circles > div {
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
 	border-color: 1px solid green;
 	z-index: 1;
 	background-color: blue;
+}
+
+.main__contents-section {
+	margin: var(--main-margin);
 }

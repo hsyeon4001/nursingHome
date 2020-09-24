@@ -1,13 +1,28 @@
-.footer > div {
+.footer {
 	width: 100%;
 	height: 90px;
 	background-color: #1f1f1f;
+	position: relative;
+	top: 20px;
+}
+.footer > div {
+	height: inherit;
+	margin: var(--main-margin);
 	color: whitesmoke;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.footer__place > span {
-	display: block;
+.footer__place > div,
+.footer__contact > div {
+	margin: 8px 0;
+}
+
+.title {
+	display: inline-block;
+	width: 50px;
+	font-size: 12px;
+	opacity: 0.6;
+	font-family: "JSDongkang-Regular";
 }

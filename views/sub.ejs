@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+		integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+	<link rel="stylesheet" href="styles/layout.css" />
+	<link rel="stylesheet" href="styles/sub.css" />
+	<title><%= sub %></title>
+</head>
+
+<body>
+	<div class="status-bar"><%- include ("../public/status.html") %></div>
+	<header class="header"><%- include ("../public/header.html") %></header>
+	<nav class="nav"><%- include ("../public/nav.html") %></nav>
+	<main class="sub">
+		<section class="sub__img-section">
+			<div class="sub__img-section--img">
+				<img src="images/cat9.jpg" alt="" />
+			</div>
+			<div class="sub__img-section--text">
+				<div class="sub__img-section--headline">
+					<span>메인 > <%= path %></span>
+					<span><%= headline %></span>
+				</div>
+			</div>
+		</section>
+		<section class="sub__contents-section">
+			<% switch (sub) { 
+			case "Introduction": %>
+			<%- include ("../public/contents/introduction.html") %>
+			<% break; %>
+			<% case "Way": %>
+			<%- include ("../public/contents/way.html") %>
+			<% break; %>
+			<% case "Admit": %>
+			<%- include ("../public/contents/admit.html") %>
+			<% break; %>
+			<% case "Space": %>
+			<%- include ("../public/contents/space.html") %>
+			<% break; %>
+			<% case "Notice": %>
+			<%- include ("../public/contents/notice.html") %>
+			<% break; %>
+			<% case "Board": %>
+			<%- include ("../public/contents/board.html") %>
+			<% break; %>
+			<% case "Agency": %>
+			<%- include ("../public/contents/agency.html") %>
+			<% break; %>
+			<% case "Counseling": %>
+			<%- include ("../public/contents/counseling.html") %>
+			<% break; %>
+			<% } %>
+		</section>
+	</main>
+	<footer class="footer"><%- include ("../public/footer.html") %></footer>
+</body>
+
+</html>

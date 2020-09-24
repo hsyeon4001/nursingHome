@@ -1,9 +1,55 @@
 .status-bar {
 	width: 100%;
 	height: 45px;
-	background-color: #3a2154;
+	background-color: var(--dark);
 	position: fixed;
+}
+
+.status-bar > div {
+	margin: auto 150px;
+	height: 45px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+	position: relative;
+	top: -2px;
+}
+
+.status-bar__login-form--id,
+.status-bar__login-form--pw {
+	background-color: var(--dark);
+	color: whitesmoke;
+	border: 2px solid whitesmoke;
+	border-radius: 8px;
+	width: 150px;
+	height: 20px;
+	padding-left: 7px;
+}
+
+.status-bar__login-form--pw {
+	font-family: sans-serif;
+	position: relative;
+	top: 2px;
+}
+
+.status-bar__login-form--id::placeholder,
+.status-bar__login-form--pw::placeholder {
+	color: whitesmoke;
+	text-align: center;
+}
+
+.status-bar__login-form--login > i {
+	color: whitesmoke;
+	font-size: 25px;
+	position: relative;
+	top: 4px;
+	left: -2px;
+}
+
+.status-bar__join > i {
+	color: whitesmoke;
+	font-size: 20px;
+	margin: auto 5px;
+	position: relative;
+	top: 2px;
 }

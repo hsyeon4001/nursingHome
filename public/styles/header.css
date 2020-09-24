@@ -1,32 +1,68 @@
-.header > div {
+.header {
 	width: 100%;
 	height: 90px;
 	background-color: whitesmoke;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 	position: fixed;
 	top: 45px;
 }
 
+.header > div {
+	height: 90px;
+	margin: auto 150px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header a {
+	color: var(--dark);
+}
+
 .header__main-link {
 	font-size: 30px;
-	font-weight: 900;
 }
 
 .header__menu {
 	width: 400px;
 	display: flex;
 	justify-content: space-around;
-	border: 1px solid green;
 	position: relative;
 }
 
+.header__menu > ul > li {
+	position: relative;
+}
+
+.mainmenu {
+	display: block;
+	height: 90px;
+	line-height: 90px;
+}
+
 .submenu {
-	display: none;
-	position: absolute;
+	display: block;
+	visibility: hidden;
+	position: fixed;
+	width: 110px;
+	top: 170px;
+	opacity: 0;
+	background-color: whitesmoke;
+	padding: 10px;
+}
+
+.submenu > li {
+	margin: 10px;
 }
 
 .header__menu > ul > li:hover .submenu {
-	display: block;
+	visibility: visible;
+	border-top: 3px solid var(--mint);
+	top: 135px;
+	opacity: 1;
+
+	transition: 0.3s linear;
+}
+
+.header__menu > ul > li:hover .mainmenu {
+	color: var(--mint);
 }

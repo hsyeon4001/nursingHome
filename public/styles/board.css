@@ -1,23 +1,28 @@
 .board {
-	position: absolute;
-	top: 400px;
-	left: 100px;
+	width: 100%;
+	height: 800px;
+	z-index: -1;
+	display: flex;
+	align-items: center;
+	padding: 60px 0;
 }
 
 .board > ul {
-	width: 1300px;
-	height: 800px;
+	width: inherit;
+	height: inherit;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: space-between;
+	margin: var(--main-margin);
 }
 .board__post {
-	width: 400px;
-	height: 350px;
+	width: 350px;
+	height: 300px;
+	padding: 0 5px;
 }
 
 .board__post--thumb {
-	width: 400px;
+	width: 350px;
 	height: 300px;
 }
 
@@ -26,12 +31,15 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	color: var(--dark);
 }
 
 .board__post--title {
 	font-size: 20px;
+	margin: 5px 0;
 }
 
 .board__post--date {
-	font-size: 15px;
+	font-size: 13px;
+	opacity: 0.5;
 }

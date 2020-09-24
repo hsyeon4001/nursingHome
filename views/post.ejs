@@ -1,55 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-			integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-			crossorigin="anonymous"
-		/>
-		<link rel="stylesheet" href="styles/layout.css" />
-		<link rel="stylesheet" href="styles/post.css" />
-		<title>Post</title>
-	</head>
-	<body>
-		<div class="status-bar"><%- include ("../public/status.html") %></div>
-		<header class="header"><%- include ("../public/header.html") %></header>
-		<nav class="nav"><%- include ("../public/nav.html") %></nav>
 
-		<main>
-			<div class="screen-menu">
-				<%- include ("../public/screen-menu.html") %>
-			</div>
-			<div class="post">
-				<form
-					action="/post"
-					method="POST"
-					enctype="multipart/form-data"
-					id="form"
-				>
-					<input type="text" placeholder="제목" name="title" id="title" />
-					<textarea
-						name="description"
-						cols="30"
-						rows="10"
-						placeholder="내용"
-						id="description"
-					></textarea>
-					<input type="file" name="url" id="img" />
-					<input type="submit" />
-				</form>
-			</div>
-		</main>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+		integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+	<link rel="stylesheet" href="styles/layout.css" />
+	<link rel="stylesheet" href="styles/post.css" />
+	<title>Post</title>
+</head>
 
-		<footer class="footer"><%- include ("../public/footer.html") %></footer>
-	</body>
-	<script>
+<body>
+	<div class="status-bar"><%- include ("../public/status.html") %></div>
+	<header class="header"><%- include ("../public/header.html") %></header>
+	<nav class="nav"><%- include ("../public/nav.html") %></nav>
+
+	<main>
+		<div class="post">
+			<form action="/post" method="POST" enctype="multipart/form-data" id="form">
+				<input type="text" placeholder="제목" name="title" id="title" />
+				<textarea name="description" cols="30" rows="10" placeholder="내용" id="description"></textarea>
+				<input type="file" name="url" id="img" />
+				<input type="submit" />
+			</form>
+		</div>
+	</main>
+
+	<footer class="footer"><%- include ("../public/footer.html") %></footer>
+</body>
+<script>
 		// if (document.getElementById("submit")) {
 		// 	document.getElementById("submit").addEventListener("click", function (e) {
 		// 		var formData = new FormData();
@@ -69,5 +50,6 @@
 		// 	xhr.open("POST", "/post");
 		// 	xhr.send(formData2);
 		// });
-	</script>
+</script>
+
 </html>
