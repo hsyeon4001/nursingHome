@@ -33,6 +33,9 @@ const upload = multer({
 // });
 
 const upload2 = multer();
+
+
+
 router.post("/", upload.single("url"), async (req, res, next) => {
 	console.log(req.file, req.body);
 	let url = ``;
@@ -43,7 +46,7 @@ router.post("/", upload.single("url"), async (req, res, next) => {
 
 	try {
 		await Post.create({
-			category: 1,
+			category: req.body.category,
 			title: req.body.title,
 			description: req.body.description,
 			img: url,
@@ -58,4 +61,101 @@ router.post("/", upload.single("url"), async (req, res, next) => {
 	}
 });
 
+router.get("/:id/edit", async (req, res) => {
+	const id = req.params.id;
+
+	try {
+
+		const post = await Post.findOne({
+			where: { postId: id },
+			attributes: ["title", "description", "img", "category"],
+		})
+
+		console.log(post);
+		res.render("sub", {
+			sub: "Edit",
+			path: "늘봄소식",
+			headline: "게시글수정",
+			title: post.title,
+			description: post.description,
+			category: post.category,
+			id: id
+		});
+	}
+	catch {
+		console.error(error);
+		next(error);
+	}
+});
+
+router.put("/:id/edit", upload.single("url"), async (req, res, next) => {
+	console.log(req.params);
+	let id = req.params.id;
+	let url = ``;
+	if (req.file) {
+		url = `/uploads/${req.file.filename}`;
+	}
+	// const url = `/uploads/${req.file.filename}`;
+
+	try {
+
+		const prevPost = await Post.findOne({
+			where: { postId: id },
+			attributes: ["img"]
+		})
+		console.log(prevPost, prevPost.img);
+		await Post.update({
+			category: req.body.category,
+			title: req.body.title,
+			description: req.body.description,
+			img: url,
+			authorId: "hsyeon4001",
+		}, {
+			where: { postId: id }
+		});
+
+		const path = `../nursinghome/${prevPost.img}`;
+
+		fs.unlink(path, function (err) {
+			if (err) throw err;
+			console.log('file deleted');
+		});
+
+		res.redirect("/");
+	} catch (error) {
+		console.error(error);
+		next(error);
+	}
+});
+
+router.delete("/:id/delete", async (req, res, next) => {
+	try {
+
+		console.log('delete');
+		let id = req.params.id;
+
+		const prevPost = await Post.findOne({
+			where: { postId: id },
+			attributes: ["img"]
+		})
+
+		await Post.destroy({
+			where: { postId: id }
+		});
+
+		const path = `../nursinghome/${prevPost.img}`;
+
+		fs.unlink(path, function (err) {
+			if (err) throw err;
+			console.log('file deleted');
+		});
+
+		res.redirect("/gallery/1");
+	}
+	catch (error) {
+		console.error(error);
+		next(error);
+
+	}
+})
 module.exports = router;

@@ -16,6 +16,7 @@ exports.create = function (req, res) {
 			}
 			//jwt.sign('token내용', 'jwt secretkey')
 			const token = jwt.sign(user.toJSON(), process.env.JWT_SECRET);
+			req.headers("Authorization", token);
 			return res.json({ user, token });
 		});
 	})(req, res);

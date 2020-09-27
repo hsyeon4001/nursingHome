@@ -7,8 +7,11 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 		integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
-	<link rel="stylesheet" href="styles/layout.css" />
-	<link rel="stylesheet" href="styles/sub.css" />
+	<link rel="stylesheet" href="/styles/layout.css" />
+	<link rel="stylesheet" href="/styles/sub.css" />
+	<link rel="stylesheet" href="/styles/postView.css" />
+	<link rel="stylesheet" href="/styles/post.css" />
+	<link rel="stylesheet" href="/styles/join.css" />
 	<title><%= sub %></title>
 </head>
 
@@ -19,7 +22,7 @@
 	<main class="sub">
 		<section class="sub__img-section">
 			<div class="sub__img-section--img">
-				<img src="images/cat9.jpg" alt="" />
+				<img src="/images/cat9.jpg" alt="" />
 			</div>
 			<div class="sub__img-section--text">
 				<div class="sub__img-section--headline">
@@ -29,8 +32,9 @@
 			</div>
 		</section>
 		<section class="sub__contents-section">
+
 			<% switch (sub) { 
-			case "Introduction": %>
+				case "Introduction": %>
 			<%- include ("../public/contents/introduction.html") %>
 			<% break; %>
 			<% case "Way": %>
@@ -54,10 +58,39 @@
 			<% case "Counseling": %>
 			<%- include ("../public/contents/counseling.html") %>
 			<% break; %>
+			<% case "Gallery Detail": %>
+			<%- include ("layout/postView.ejs") %>
+			<% break; %>
+			<% case "Post": %>
+			<%- include ("layout/post.ejs") %>
+			<% break; %>
+			<% case "Join": %>
+			<%- include ("join.ejs") %>
+			<% break; %>
+			<% case "Edit": %>
+			<%- include ("layout/edit.ejs") %>
+			<% break; %>
+			<% case "Gallery": %>
+			<%- include ("layout/board.ejs") %>
+			<%- include ("../public/page.html") %>
+			<% break; %>
 			<% } %>
 		</section>
 	</main>
 	<footer class="footer"><%- include ("../public/footer.html") %></footer>
+	<script class="switch"></script>
+	<script>
+		let switchScript = document.querySelector(".switch");
+
+		switch ("<%= sub %>") {
+			case "Gallery":
+				switchScript.src = "/galleryScript.js";
+				break;
+			case "Post":
+				switchScript.src = "/postScript.js";
+				break;
+		}
+	</script>
 </body>
 
 </html>

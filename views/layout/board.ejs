@@ -1,13 +1,15 @@
-<ul>
-	<% for (i = 0; i < 6; i++) { %>
-	<li class="board__post" value="<%= ids[i] %>">
-		<a href="">
-			<img src="<%= thumb[i] %>" onError="this.src='/images/noImg.jpg'" class="board__post--thumb" />
-			<div class="board__post--text">
-				<span class="board__post--title"><%= titles[i] %></span>
-				<span class="board__post--date"><i class="far fa-calendar-alt"></i> <%= dates[i] %></span>
-			</div>
-		</a>
-	</li>
-	<% } %>
-</ul>
+<div class="board">
+	<ul>
+		<% for (i = 0; i < ids.length; i++) { %>
+		<li class="board__post" value="<%= ids[i] %>">
+			<a href="">
+				<img src="<%= thumb[i] %>" onError="this.src='/images/noImg.jpg'" class="board__post--thumb" />
+				<div class="board__post--text">
+					<span class="board__post--title"><%= titles[i] %></span>
+					<span class="board__post--date"><i class="far fa-calendar-alt"></i> <%= dates[i] %></span>
+				</div>
+			</a>
+		</li>
+		<% } %>
+	</ul>
+</div>

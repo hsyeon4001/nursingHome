@@ -1,11 +1,7 @@
 <div>
-	<form action="" class="status-bar__login-form">
-		<input type="text" class="status-bar__login-form--id" placeholder="ID" />
-		<input
-			type="password"
-			class="status-bar__login-form--pw"
-			placeholder="PASSWORD"
-		/>
+	<form action="/sign/in" method="POST" class="status-bar__login-form">
+		<input type="text" name="id" class="status-bar__login-form--id" placeholder="ID" />
+		<input type="password" name="password" class="status-bar__login-form--pw" placeholder="PASSWORD" />
 		<button type="submit" class="status-bar__login-form--login">
 			<i class="fas fa-sign-in-alt"></i>
 		</button>

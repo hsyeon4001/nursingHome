@@ -3,12 +3,14 @@ const morgan = require("morgan");
 const path = require("path");
 const flash = require("connect-flash");
 const passport = require("passport");
+const methodOverride = require('method-override');
 
 require("dotenv").config();
 
 const pageRouter = require("./routes/page");
 const postRouter = require("./routes/post");
 const joinRouter = require("./routes/join");
+const signRouter = require("./routes/sign");
 
 const { sequelize } = require("./models");
 const passportConfig = require("./config/passport");
@@ -24,12 +26,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 app.use(passport.initialize());
 passportConfig();
 
 app.use("/", pageRouter);
 app.use("/post", postRouter);
 app.use("/join", joinRouter);
+app.use("/sign", signRouter);
 
 sequelize.sync();
 

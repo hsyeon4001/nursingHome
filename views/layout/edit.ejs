@@ -1,0 +1,31 @@
+<div class="post-form">
+	<form action="/post/<%= id %>/edit?_method=PUT" method="POST" enctype="multipart/form-data" id="form">
+		<div>
+			<label for="title" class="post-form__label">제목</label>
+			<input type="text" name="title" id="title" class="post-form__title" value="<%= title %>" />
+		</div>
+		<div>
+			<label for="category" class="post-form__label">분류</label>
+			<div id="category" class="post-form__category">
+				<input type="radio" id="category1" name="category" value="notice" />
+				<label for="category1">공지사항</label>
+				<input type="radio" id="category2" name="category" value="gallery" />
+				<label for="category2">갤러리</label>
+			</div>
+		</div>
+		<div>
+			<label for="description" class="post-form__label">본문</label>
+			<textarea name="description" cols="68" rows="10" id="description"
+				class="post-form__description"><%= description %></textarea>
+		</div>
+		<div>
+			<label class="post-form__label">사진</label>
+			<label class="post-form__label--button" for="img">업로드</label>
+			<input type="file" name="url" id="img" class="post-form__img" />
+			<input id="fileName" class="post-form__img--name" readonly>
+		</div>
+		<div>
+			<input type="submit" value="수정" class="post-form__submit" />
+		</div>
+	</form>
+</div>

@@ -13,15 +13,25 @@ input {
 	outline: none;
 }
 
-/* button, submit style */
+/* button style */
 button {
 	border: 0 none;
 	background-color: transparent;
 	cursor: pointer;
 }
 
-input[type="submit"] {
-	-webkit-appearance: button; /* 2 */
-	cursor: pointer; /* 3 */
-	font-family: "FontAwesome";
+/* input style */
+input[type="radio"] {
+	box-sizing: border-box; /* 1 */
+	padding: 0; /* 2 */
+}
+
+/* form style */
+form {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
