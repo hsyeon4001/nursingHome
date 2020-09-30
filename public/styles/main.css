@@ -1,6 +1,9 @@
+main {
+	width: inherit;
+}
+
 .main__img-section {
-	width: 100%;
-	height: 600px;
+	height: 800px;
 	position: relative;
 	z-index: -1;
 }
@@ -9,7 +12,7 @@
 	display: block;
 	margin: auto;
 	width: 100%;
-	height: 600px;
+	height: inherit;
 	overflow: hidden;
 }
 
@@ -23,7 +26,7 @@
 	display: flex;
 	justify-content: space-between;
 	position: absolute;
-	top: 300px;
+	top: 360px;
 	margin: var(--main-margin);
 }
 
@@ -62,25 +65,54 @@
 	color: var(--mint);
 }
 
-.main__img-section--circles {
-	height: 100px;
-	margin: 10px 40px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	position: relative;
-	right: 200px;
-}
-
-.main__img-section--circles > div {
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	border-color: 1px solid green;
-	z-index: 1;
-	background-color: blue;
-}
 
 .main__contents-section {
 	margin: var(--main-margin);
+	padding: 60px 0;
+}
+
+
+.main__contents-section--headline > span {
+	width: inherit;
+	display: block;
+	text-align: center;
+}
+
+.main__contents-section--headline > span:first-child {
+	margin: 20px;
+	font-size: 40px;
+}
+
+.main__contents-section--headline > span:last-child {
+	margin: 10px;
+	font-family: "JSDongkang-Regular";
+	font-size: 20px;
+	position: relative;
+	top: 15px;
+}
+
+.main__contents-section--contents > div > span {
+	display: block;
+}
+
+.main__contents-section--contents {
+	display: flex;
+	justify-content: space-evenly;
+	position: relative;
+	top: 45px;
+}
+
+.main__contents-section--service {
+	margin: 30px 20px;
+	text-align: center;
+}
+
+.main__contents-section--service i {
+	font-size: 70px;
+	color: var(--mint);
+}
+
+.main__contents-section--service > span:nth-child(2) {
+	font-size: 20px;
+	margin: 20px 0;
 }

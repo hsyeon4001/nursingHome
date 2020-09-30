@@ -20,19 +20,21 @@ module.exports = (sequelize, Sequelize) =>
 				type: Sequelize.STRING(15),
 				allowNull: false,
 			},
-			created_at: {
-				type: Sequelize.DATE,
-				allowNull: false,
-				defaultValue: Sequelize.literal("NOW()"),
-			},
-			updated_at: {
-				type: Sequelize.DATE,
-				allowNull: false,
-				defaultValue: Sequelize.literal("NOW()"),
-			},
+			// created_at: {
+			// 	type: Sequelize.DATE(),
+			// 	allowNull: false,
+			// 	defaultValue: Sequelize.literal("NOW()"),
+			// },
+			// updated_at: {
+			// 	type: Sequelize.DATE(),
+			// 	allowNull: false,
+			// 	defaultValue: Sequelize.literal("NOW()")
+			// },
 		},
 		{
-			timestamps: false,
+			timestamps: true,
+			updatedAt: 'updated_at',
+			createdAt: 'created_at',
 			charset: "utf8",
 			collate: "utf8_general_ci",
 		}

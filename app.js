@@ -2,18 +2,19 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const flash = require("connect-flash");
-const passport = require("passport");
 const methodOverride = require('method-override');
+const cookieParser = require("cookie-parser");
+
 
 require("dotenv").config();
 
-const pageRouter = require("./routes/page");
+const indexRouter = require("./routes/index");
 const postRouter = require("./routes/post");
 const joinRouter = require("./routes/join");
 const signRouter = require("./routes/sign");
+const adminRouter = require("./routes/admin");
 
 const { sequelize } = require("./models");
-const passportConfig = require("./config/passport");
 
 const app = express();
 
@@ -22,18 +23,18 @@ app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 8001);
 
 app.use(morgan("dev"));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-app.use(passport.initialize());
-passportConfig();
 
-app.use("/", pageRouter);
+app.use("/", indexRouter);
 app.use("/post", postRouter);
 app.use("/join", joinRouter);
 app.use("/sign", signRouter);
+app.use("/admin", adminRouter);
 
 sequelize.sync();
 

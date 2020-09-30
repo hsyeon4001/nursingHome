@@ -1,8 +1,9 @@
 .status-bar {
-	width: 100%;
+	width: inherit;
 	height: 45px;
 	background-color: var(--dark);
 	position: fixed;
+	color: whitesmoke;
 }
 
 .status-bar > div {
@@ -53,3 +54,9 @@
 	position: relative;
 	top: 2px;
 }
+
+.status-bar__user--logout > i {
+	color: whitesmoke;
+}
+
+

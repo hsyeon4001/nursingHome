@@ -1,0 +1,65 @@
+<section class="sub__img-section">
+    <div class="sub__img-section--img">
+        <img src="/images/cat9.JPG" alt="" />
+    </div>
+    <div class="sub__img-section--text">
+        <div class="sub__img-section--headline">
+            <span>메인 > <%= path %></span>
+            <span><%= headline %></span>
+        </div>
+    </div>
+</section>
+<section class="sub__contents-section">
+
+    <% switch (sub) { 
+        case "Introduction": %>
+    <%- include ("../../public/contents/introduction.html") %>
+    <% break; %>
+    <% case "Way": %>
+    <%- include ("../../public/contents/way.html") %>
+    <% break; %>
+    <% case "Admit": %>
+    <%- include ("../../public/contents/admit.html") %>
+    <% break; %>
+    <% case "Space": %>
+    <%- include ("../../public/contents/space.html") %>
+    <% break; %>
+    <% case "Notice": %>
+    <%- include ("../../public/contents/notice.html") %>
+    <% break; %>
+    <% case "Board": %>
+    <%- include ("../../public/contents/board.html") %>
+    <% break; %>
+    <% case "Agency": %>
+    <%- include ("../../public/contents/agency.html") %>
+    <% break; %>
+    <% case "Counseling": %>
+    <%- include ("../../public/contents/counseling.html") %>
+    <% break; %>
+    <% case "Gallery Detail": %>
+    <%- include ("postView.ejs") %>
+    <% break; %>
+    <% case "Post": %>
+    <%- include ("post.ejs") %>
+    <% break; %>
+    <% case "Join": %>
+    <%- include ("join.ejs") %>
+    <% break; %>
+    <% case "Edit": %>
+    <%- include ("edit.ejs") %>
+    <% break; %>
+    <% case "Admin": %>
+    <%- include ("../../public/admin.html") %>
+    <% break; %>
+    <% case "Admin Users": %>
+    <%- include ("../users.ejs") %>
+    <% break; %>
+    <% case "Admin Posts": %>
+    <%- include ("../posts.ejs") %>
+    <% break; %>
+    <% case "Gallery": %>
+    <%- include ("board.ejs") %>
+    <%- include ("../../public/page.html") %>
+    <% break; %>
+    <% } %>
+</section>

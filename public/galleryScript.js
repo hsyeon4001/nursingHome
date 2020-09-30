@@ -6,7 +6,7 @@ const firstNum = document.querySelector(".page__number")
 const lastNum = document.querySelector(".page__number").lastElementChild;
 const posts = document.querySelectorAll(".board__post");
 
-const postCnt = parseInt("<%= posts %>");
+const postCnt = parseInt(posts.length);
 const remainPost = postCnt % 6;
 let maxPage = Math.floor(postCnt / 6);
 const link = document.location.href;

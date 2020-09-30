@@ -1,0 +1,16 @@
+.admin {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 300px;
+}
+.admin > button {
+    font-family: "JSDongkang-Bold";
+	font-size: 30px;
+	width: 250px;
+	height: 100px;
+    margin: 30px;
+    background-color: var(--mint);
+    color: whitesmoke;
+}

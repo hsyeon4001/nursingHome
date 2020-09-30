@@ -7,6 +7,10 @@
 @import "board.css";
 @import "page.css";
 @import "reset.css";
+@import "post.css";
+@import "join.css";
+@import "postView.css";
+@import "admin.css";
 
 /* Variables */
 @import "variables.css";
@@ -29,6 +33,8 @@
 
 /* Layout default styles */
 body {
+	width: 1535px;
 	background-color: whitesmoke;
 	font-family: "JSDongkang-Bold", sans-serif;
+	overflow-x: hidden;
 }

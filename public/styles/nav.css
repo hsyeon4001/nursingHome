@@ -1,7 +1,7 @@
 .nav {
-	width: 45px;
+	width: 50px;
 	height: 140px;
-	background-color: whitesmoke;
+	background-color: var(--mint);
 	position: fixed;
 	right: 0;
 	top: 180px;
@@ -18,7 +18,7 @@
 }
 
 .nav__btns i {
-	color: var(--dark);
+	color: whitesmoke;
 	font-size: 25px;
 	/* font-weight: lighter; */
 }

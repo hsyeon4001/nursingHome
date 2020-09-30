@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const jwtController = require("./jwtController");
 
 const { Post, User } = require("../models");
 
@@ -36,9 +37,15 @@ const upload2 = multer();
 
 
 
-router.post("/", upload.single("url"), async (req, res, next) => {
+router.post("/", jwtController.verify, upload.single("url"), async (req, res, next) => {
 	console.log(req.file, req.body);
 	let url = ``;
+	let user = null;
+
+	if (res.locals.user) {
+		user = res.locals.user;
+	}
+
 	if (req.file) {
 		url = `/uploads/${req.file.filename}`;
 	}
@@ -61,10 +68,15 @@ router.post("/", upload.single("url"), async (req, res, next) => {
 	}
 });
 
-router.get("/:id/edit", async (req, res) => {
+router.get("/:id/edit", jwtController.verify, async (req, res) => {
 	const id = req.params.id;
 
 	try {
+		let user = null;
+
+		if (res.locals.user) {
+			user = res.locals.user;
+		}
 
 		const post = await Post.findOne({
 			where: { postId: id },
@@ -72,14 +84,15 @@ router.get("/:id/edit", async (req, res) => {
 		})
 
 		console.log(post);
-		res.render("sub", {
+		res.render("index", {
 			sub: "Edit",
 			path: "늘봄소식",
 			headline: "게시글수정",
 			title: post.title,
 			description: post.description,
 			category: post.category,
-			id: id
+			id: id,
+			user: user
 		});
 	}
 	catch {
@@ -88,10 +101,16 @@ router.get("/:id/edit", async (req, res) => {
 	}
 });
 
-router.put("/:id/edit", upload.single("url"), async (req, res, next) => {
+router.put("/:id/edit", jwtController.verify, upload.single("url"), async (req, res, next) => {
 	console.log(req.params);
 	let id = req.params.id;
 	let url = ``;
+	let user = null;
+
+	if (res.locals.user) {
+		user = res.locals.user;
+	}
+
 	if (req.file) {
 		url = `/uploads/${req.file.filename}`;
 	}
@@ -115,11 +134,12 @@ router.put("/:id/edit", upload.single("url"), async (req, res, next) => {
 		});
 
 		const path = `../nursinghome/${prevPost.img}`;
-
-		fs.unlink(path, function (err) {
-			if (err) throw err;
-			console.log('file deleted');
-		});
+		if (prevPost && path) {
+			fs.unlink(path, function (err) {
+				if (err) throw err;
+				console.log('file deleted');
+			});
+		}
 
 		res.redirect("/");
 	} catch (error) {
@@ -128,11 +148,16 @@ router.put("/:id/edit", upload.single("url"), async (req, res, next) => {
 	}
 });
 
-router.delete("/:id/delete", async (req, res, next) => {
+router.delete("/:id/delete", jwtController.verify, async (req, res, next) => {
 	try {
 
 		console.log('delete');
 		let id = req.params.id;
+		let user = null;
+
+		if (res.locals.user) {
+			user = res.locals.user;
+		}
 
 		const prevPost = await Post.findOne({
 			where: { postId: id },

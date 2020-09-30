@@ -1,25 +1,54 @@
 const express = require("express");
-const multer = require("multer");
-const path = require("path");
+const bcryptjs = require("bcryptjs");
 
 const { Post, User } = require("../models");
 
 const router = express.Router();
 
 router.post("/", async (req, res, next) => {
-	try {
-		await User.create({
-			id: req.body.id,
-			password: req.body.password,
-			name: req.body.name,
-			job: req.body.job,
-		});
+	let password = req.body.password;
 
-		res.redirect("/");
-	} catch (error) {
+	try {
+		await bcryptjs.genSalt(10, (_, salt) => {
+			bcryptjs.hash(password, salt, (_, hash) => {
+				password = hash;
+
+				User.create({
+					id: req.body.id,
+					password: password,
+					name: req.body.name,
+					job: req.body.job,
+				});
+
+				res.redirect("/");
+			})
+		})
+	}
+	catch (error) {
 		console.error(error);
 		next(error);
 	}
-});
+})
+
+
+// 	  User.create({ email, nickName, password, provider, profileImg })
+// 		.then(_ => {
+// 		  res.status(201);
+// 		  res.send(true);
+// 		})
+// 		.catch(err => {
+// 		  res.status(500);
+// 		  res.send(err);
+// 		});
+// 	});
+//   });
+
+// try {
+
+// } catch (error) {
+// 	console.error(error);
+// 	next(error);
+// }
+
 
 module.exports = router;

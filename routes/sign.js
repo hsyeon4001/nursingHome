@@ -1,10 +1,17 @@
 const express = require("express");
-const passport = require("passport");
 const { Post, User } = require("../models");
-const authTokenController = require("./authTokenController.js");
+const jwt = require("jsonwebtoken");
+const jwtController = require("./jwtController");
+require("dotenv").config();
 
 const router = express.Router();
 
-router.post("/in", authTokenController.create);
+router.post("/in", jwtController.create);
+
+router.get("/out", (req, res, next) => {
+    res.clearCookie("user");
+    res.redirect("/");
+});
+
 
 module.exports = router;
