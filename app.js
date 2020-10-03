@@ -4,8 +4,6 @@ const path = require("path");
 const flash = require("connect-flash");
 const methodOverride = require('method-override');
 const cookieParser = require("cookie-parser");
-
-
 require("dotenv").config();
 
 const indexRouter = require("./routes/index");

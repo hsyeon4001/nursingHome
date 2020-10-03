@@ -28,12 +28,10 @@ router.get(
 );
 
 router.get("/gallery/:page", jwtController.verify, async (req, res) => {
-	console.log('hello');
 
 	let page = req.params.page;
 	let offset = 0;
 	let user = null;
-	console.log('1');
 
 	if (res.locals.user) {
 		user = res.locals.user;
@@ -59,13 +57,11 @@ router.get("/gallery/:page", jwtController.verify, async (req, res) => {
 
 		for (let i = 0; i < posts.rows.length; i++) {
 			let date = (posts.rows[i].created_at).substring(0, 10);
-			console.log('date');
 			dates.push(date);
 			imgs.push(posts.rows[i].img);
 			titles.push(posts.rows[i].title);
 			ids.push(posts.rows[i].postId);
 		}
-		console.log('2');
 
 		res.render("index", {
 			sub: "Gallery",
@@ -85,14 +81,58 @@ router.get("/gallery/:page", jwtController.verify, async (req, res) => {
 });
 
 
-router.get("/notice", jwtController.verify, (req, res) => {
+router.get("/notice/:page", jwtController.verify, async (req, res) => {
+
+	let page = req.params.page;
+	let offset = 0;
 	let user = null;
 
 	if (res.locals.user) {
 		user = res.locals.user;
 	}
 
-	res.render("index", { sub: "Notice", path: "늘봄소식", headline: "공지사항", user: user });
+	try {
+
+		if (page > 1) {
+			offset = 6 * (page - 1);
+		}
+
+		const posts = await Post.findAndCountAll({
+			where: { category: "notice" },
+			attributes: ["postId", "img", "title", "created_at"],
+			offset: offset,
+			limit: 6,
+		});
+
+		const imgs = [];
+		const titles = [];
+		const dates = [];
+		const ids = [];
+
+		for (let i = 0; i < posts.rows.length; i++) {
+			let date = (posts.rows[i].created_at).substring(0, 10);
+			dates.push(date);
+			imgs.push(posts.rows[i].img);
+			titles.push(posts.rows[i].title);
+			ids.push(posts.rows[i].postId);
+		}
+
+		res.render("index", {
+			sub: "Notice",
+			path: "늘봄소식",
+			headline: "공지사항",
+			ids: ids,
+			titles: titles,
+			thumb: imgs,
+			dates: dates,
+			posts: posts.count,
+			user: user
+		});
+	} catch {
+		console.error(error);
+		next(error);
+	}
+
 });
 
 
@@ -123,7 +163,7 @@ router.get("/way", jwtController.verify, (req, res) => {
 		user = res.locals.user;
 	}
 
-	res.render("index", { sub: "Way", path: "시설소개", headline: "오시는길", user: user });
+	res.render("index", { sub: "Way", path: "시설소개", headline: "오시는길", user: user, key: process.env.MAP_KEY });
 
 
 });
@@ -149,18 +189,13 @@ router.get("/space", jwtController.verify, (req, res) => {
 });
 
 router.get("/agency", jwtController.verify, (req, res) => {
-
-	res.render("index", { sub: "Agency", path: "문의하기", headline: "유관기관", user: user });
-});
-
-router.get("/counseling", jwtController.verify, (req, res) => {
 	let user = null;
 
 	if (res.locals.user) {
 		user = res.locals.user;
 	}
 
-	res.render("index", { sub: "Counseling", path: "문의하기", headline: "상담신청", user: user });
+	res.render("index", { sub: "Agency", path: "문의하기", headline: "상담문의", user: user });
 });
 
 router.get("/gallery/:page/id/:id", jwtController.verify, async (req, res) => {
@@ -197,5 +232,41 @@ router.get("/gallery/:page/id/:id", jwtController.verify, async (req, res) => {
 		next(error);
 	}
 });
+
+router.get("/notice/:page/id/:id", jwtController.verify, async (req, res) => {
+	const id = req.params.id;
+	let user = null;
+
+	if (res.locals.user) {
+		user = res.locals.user;
+	}
+	try {
+
+		const post = await Post.findOne({
+			where: { postId: id },
+			attributes: ["title", "description", "img", "created_at", "authorId"],
+		})
+
+		const date = (post.created_at).substring(0, 10);
+
+		res.render("index", {
+			sub: "Notice Detail",
+			path: "늘봄소식",
+			headline: "공지사항",
+			title: post.title,
+			description: post.description,
+			img: post.img,
+			date: date,
+			author: post.authorId,
+			id: id,
+			user: user
+		});
+	}
+	catch {
+		console.error(error);
+		next(error);
+	}
+});
+
 
 module.exports = router;

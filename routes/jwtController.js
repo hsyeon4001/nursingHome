@@ -11,14 +11,23 @@ exports.create = async (req, res, next) => {
             attributes: ["password"]
         })
 
+
         bcryptjs.compare(req.body.password, user.password, (err, compared) => {
-            if (err || compared === false) {
+            if (err) {
                 throw (err);
             }
+            else if (compared === false) {
+                return res.send(`
+                    <script>
+                    alert('아이디 혹은 비밀번호가 맞지 않습니다.');
+                    location.href = "/";
+                    </script>`);
+            }
+            else {
+                res.cookie("user", token);
+                return res.redirect("/");
+            }
         })
-
-        res.cookie("user", token);
-        return res.redirect("/");
 
         //     , (err, res) => {
         //     console.log(res);
@@ -34,18 +43,30 @@ exports.create = async (req, res, next) => {
 };
 
 exports.verify = (req, res, next) => {
-    let token = req.cookies["user"];
-    if (!token) {
-        next();
+
+    try {
+        let token = req.cookies["user"];
+
+        if (!token) {
+            next();
+        }
+        else {
+            jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+                if (err) {
+                    res.clearCookie("user");
+                } else {
+                    res.locals.user = decoded.id;
+                    console.log('complete');
+                }
+            });
+            next();
+        }
+
+    }
+    catch {
+        console.log(error);
+        next(error);
     }
 
-    let verified = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (!verified) {
-        res.clearCookie("user");
-    } else {
-        res.locals.user = verified.id;
-    }
-    next();
 
 }

@@ -11,6 +11,14 @@
 @import "join.css";
 @import "postView.css";
 @import "admin.css";
+@import "userAdmin.css";
+@import "postAdmin.css";
+@import "way.css";
+@import "introduction.css";
+@import "admit.css";
+@import "space.css";
+@import "agency.css";
+
 
 /* Variables */
 @import "variables.css";

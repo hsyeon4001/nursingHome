@@ -4,6 +4,7 @@
 	background-color: var(--dark);
 	position: fixed;
 	color: whitesmoke;
+	z-index: 3;
 }
 
 .status-bar > div {

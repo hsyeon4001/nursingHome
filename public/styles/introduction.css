@@ -1,0 +1,83 @@
+.introduction {
+    margin: var(--sub-margin);
+
+}
+
+.introduction__text + div {
+    height: 360px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.introduction__text--title, .introduction__staffs--title, .introduction__schedules--title {
+    display: block;
+    margin: 15px;
+    text-align: center;
+    font-size: 30px;
+    color: whitesmoke;
+}
+
+.introduction__text--contents, .introduction__staffs--jobs, .introduction__schedules--activities {
+    font-size: 20px;
+}
+
+.introduction__text {
+    position: relative;
+    top: 10px;
+    height: 180px;
+    margin: 60px 0;
+}
+
+.introduction__text--title {
+    color: var(--mint);
+}
+
+.introduction__text--contents {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.introduction__schedules > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.introduction__schedules--activities {
+    display: flex;
+    flex-direction: column;
+}
+
+.introduction__staffs, .introduction__schedules {
+    background-color: #152851;
+    width: 560px;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.introduction__staffs--jobs > span, .introduction__schedules--activity, .introduction__schedules--caution {
+    font-family: "JSDongkang-Regular";
+    color: whitesmoke;
+}
+
+.introduction__staffs--position > i, .introduction__schedules--activity > i {
+    color: var(--mint);
+}
+
+.introduction__staffs--position {
+    width: 125px;
+    display: inline-block;
+}
+
+.introduction__staffs--jobs, .introduction__schedules--activities {
+    line-height: 40px;
+}
+
+.introduction__schedules--caution {
+    display: block;
+    width: inherit;
+    text-align: center;
+    margin: 5px 0;
+}

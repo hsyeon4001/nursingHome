@@ -134,7 +134,7 @@ router.put("/:id/edit", jwtController.verify, upload.single("url"), async (req, 
 		});
 
 		const path = `../nursinghome/${prevPost.img}`;
-		if (prevPost && path) {
+		if (prevPost.img !== '' && path) {
 			fs.unlink(path, function (err) {
 				if (err) throw err;
 				console.log('file deleted');
@@ -168,19 +168,24 @@ router.delete("/:id/delete", jwtController.verify, async (req, res, next) => {
 			where: { postId: id }
 		});
 
-		const path = `../nursinghome/${prevPost.img}`;
+		if (prevPost.img !== '' && path) {
+			const path = `../nursinghome/${prevPost.img}`;
 
-		fs.unlink(path, function (err) {
-			if (err) throw err;
-			console.log('file deleted');
-		});
+			fs.unlink(path, function (err) {
+				if (err) throw err;
+				console.log('file deleted');
+			})
+		}
 
-		res.redirect("/gallery/1");
+		res.send(`
+                    <script>
+                    alert('삭제되었습니다.');
+                    location.replace("/");
+                    </script>`);
 	}
 	catch (error) {
 		console.error(error);
 		next(error);
-
 	}
 })
 module.exports = router;

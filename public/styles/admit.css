@@ -1,0 +1,62 @@
+.admit {
+    width: inherit;
+    height: 380px;
+    margin: var(--sub-margin);
+    background-color: rgb(238, 238, 238);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+
+}
+
+.admit i {
+    color: rgb(196, 196, 196);
+    font-size: 30px;
+}
+
+.admit__target, .admit__document {
+    height: 150px;
+}
+
+.admit__step {
+    height: 200px;
+}
+
+.admit__target--title, .admit__document--title, .admit__step--title {
+    width: 180px;
+    height: 70px;
+    font-size: 35px;
+    display: inline-block;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 10px;
+    text-align: center;
+    line-height: 70px;
+}
+
+.admit__document {
+    display: flex;
+}
+
+.admit__target--text, .admit__document--text, .admit__step--text {
+    font-size: 25px;
+    display: inline-block;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.admit__document--text {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -21px;
+    left: 6px;
+    height: 100px;
+}
+
+.admit__step--text > span {
+    position: relative;
+    top: -5px;
+}

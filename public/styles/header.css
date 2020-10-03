@@ -4,6 +4,7 @@
 	background-color: whitesmoke;
 	position: fixed;
 	top: 45px;
+	z-index: 3;
 }
 
 .header > div {

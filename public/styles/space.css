@@ -1,0 +1,53 @@
+.space {
+    margin: var(--sub-margin);
+    height: 600px;
+}
+
+.space > div {
+    width: inherit;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.space__rooftop {
+    flex-direction: row-reverse;
+}
+
+.space__living-room--title, .space__rooftop--title, .space__cafe--title {
+    font-size: 35px;
+    width: 310px;
+    background-color: var(--mint);
+    color: whitesmoke;
+    text-align: center;
+    line-height: 200px;
+}
+
+.space__living-room--title, .space__cafe--title {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.space__rooftop--title {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.space__living-room--images, .space__rooftop--images, .space__cafe--images {
+    width: 900px;
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+}
+
+.space__rooftop--images {
+    width: 750px;
+    justify-content: space-around;
+    position: relative;
+    left: 100px;
+}
+
+.space img {
+    width: 280px;
+}

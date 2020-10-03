@@ -1,0 +1,48 @@
+.way__map {
+    margin: 20px;
+    width: inherit;
+    height: 400px;
+    margin: var(--sub-margin);
+}
+
+.way__info {
+    width: 230px;
+    height: 360px;
+    background-color: var(--mint);
+    position: absolute;
+    top: 400px;
+    left: 1000px;
+    color: whitesmoke;
+    padding: 20px 30px;
+}
+
+.way__info--contact, .way__info--working-hours {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.way__info--contact {
+    position: relative;
+    top: -3px;
+}
+
+.way__info--title {
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+.way__info--text {
+    font-family: "JSDongkang-Regular";
+    display: flex;
+}
+
+.way__info--text > span, .way__info--text > i {
+    margin: 5px;
+    line-height: 25px;
+}
+
+.way__info--text:nth-child(5) > span {
+    position: relative;
+    left: -3px;
+}

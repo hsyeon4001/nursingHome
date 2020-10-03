@@ -1,6 +1,30 @@
 <section class="sub__img-section">
     <div class="sub__img-section--img">
+        <% switch (sub) { 
+            case "Introduction": %>
+        <% case "Way": %>
+        <img src="/images/menu1.JPG" alt="" />
+        <% break; %>
+        <% case "Admit": %>
+        <% case "Space": %>
+        <img src="/images/menu2.JPG" alt="" />
+        <% break; %>
+        <% case "Notice": %>
+        <% case "Gallery": %>
+        <% case "Gallery Detail": %>
+        <% case "Notice Detail": %>
+        <% case "Post": %>
+        <img src="/images/menu3.JPG" alt="" />
+        <% break; %>
+        <% case "Agency": %>
+        <img src="/images/menu4.JPG" alt="" />
+        <% break; %>
+        <% case "Admin": %>
+        <% case "Admin Users": %>
+        <% case "Admin Posts": %>
         <img src="/images/cat9.JPG" alt="" />
+        <% break; %>
+        <% } %>
     </div>
     <div class="sub__img-section--text">
         <div class="sub__img-section--headline">
@@ -24,19 +48,13 @@
     <% case "Space": %>
     <%- include ("../../public/contents/space.html") %>
     <% break; %>
-    <% case "Notice": %>
-    <%- include ("../../public/contents/notice.html") %>
-    <% break; %>
-    <% case "Board": %>
-    <%- include ("../../public/contents/board.html") %>
-    <% break; %>
     <% case "Agency": %>
     <%- include ("../../public/contents/agency.html") %>
     <% break; %>
-    <% case "Counseling": %>
-    <%- include ("../../public/contents/counseling.html") %>
-    <% break; %>
     <% case "Gallery Detail": %>
+    <%- include ("postView.ejs") %>
+    <% break; %>
+    <% case "Notice Detail": %>
     <%- include ("postView.ejs") %>
     <% break; %>
     <% case "Post": %>
@@ -56,6 +74,10 @@
     <% break; %>
     <% case "Admin Posts": %>
     <%- include ("../posts.ejs") %>
+    <% break; %>
+    <% case "Notice": %>
+    <%- include ("board.ejs") %>
+    <%- include ("../../public/page.html") %>
     <% break; %>
     <% case "Gallery": %>
     <%- include ("board.ejs") %>

@@ -1,0 +1,40 @@
+.users-table {
+    width: 700px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+.users-table > div > button {
+    font-family: "JSDongkang-Bold";
+    font-size: 20px;
+    background-color: var(--mint);
+    color: whitesmoke;
+}
+
+.users-table > div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.users-table__statics--columns, .users-table__table--columns {
+    background-color: lightgrey;
+    border-top: 2px solid grey;
+    border-bottom: 2px solid grey;
+}
+
+.users-table__statics--datas, .users-table__table--datas {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.users-table__statics {
+    width: 300px;
+}
+
+.users-table__table {
+    width: 700px;
+    position: relative;
+    top: -100px;
+}

@@ -7,8 +7,14 @@ const router = express.Router();
 
 router.post("/", async (req, res, next) => {
 	let password = req.body.password;
+	let grade = "guest";
 
 	try {
+		const userCnt = await User.count();
+		if (userCnt === 0) {
+			grade = "administrator";
+		}
+
 		await bcryptjs.genSalt(10, (_, salt) => {
 			bcryptjs.hash(password, salt, (_, hash) => {
 				password = hash;
@@ -18,6 +24,7 @@ router.post("/", async (req, res, next) => {
 					password: password,
 					name: req.body.name,
 					job: req.body.job,
+					grade: grade
 				});
 
 				res.redirect("/");

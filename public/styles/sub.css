@@ -1,8 +1,11 @@
+main * {
+	z-index: 1;
+}
+
 .sub__img-section {
 	width: 100%;
 	height: 340px;
 	position: relative;
-	z-index: -1;
 }
 
 .sub__img-section--img {
@@ -16,10 +19,10 @@
 }
 
 .sub__img-section--img > img {
-	width: auto;
+	width: 100%;
 	height: 340px;
-	transform: scaleX(2);
-	filter: brightness(50%)
+	filter: brightness(80%);
+	transform: scaleY(2);
 }
 
 .sub__img-section--text {
@@ -47,7 +50,6 @@
 	position: relative;
 	left: -3px;
 }
-
 
 .sub__contents-section {
 	margin: var(--main-margin);

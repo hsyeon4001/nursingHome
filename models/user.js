@@ -20,6 +20,11 @@ module.exports = (sequelize, Sequelize) =>
 				type: Sequelize.STRING(15),
 				allowNull: false,
 			},
+			grade: {
+				type: Sequelize.STRING(15),
+				allowNull: false,
+				defaultValue: "guest"
+			}
 			// created_at: {
 			// 	type: Sequelize.DATE(),
 			// 	allowNull: false,
