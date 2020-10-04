@@ -1,11 +1,12 @@
 const express = require("express");
 const { Post, User } = require("../models");
 const jwtController = require("./jwtController");
+const accessController = require("./accessController");
 
 const router = express.Router();
 
 router.get("/", jwtController.verify, (req, res) => {
-
+	console.log('here');
 	let user = null;
 
 	if (res.locals.user) {
@@ -16,7 +17,7 @@ router.get("/", jwtController.verify, (req, res) => {
 });
 
 router.get(
-	"/post", jwtController.verify,
+	"/post", jwtController.verify, accessController.chkStaff,
 	(req, res) => {
 		let user = null;
 

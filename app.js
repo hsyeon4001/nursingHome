@@ -1,9 +1,10 @@
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
-const flash = require("connect-flash");
 const methodOverride = require('method-override');
 const cookieParser = require("cookie-parser");
+const helmet = require("helmet");
+const hpp = require("hpp");
 require("dotenv").config();
 
 const indexRouter = require("./routes/index");
@@ -13,6 +14,7 @@ const signRouter = require("./routes/sign");
 const adminRouter = require("./routes/admin");
 
 const { sequelize } = require("./models");
+const logger = require("./logger");
 
 const app = express();
 
@@ -20,12 +22,20 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 8001);
 
-app.use(morgan("dev"));
+if (process.env.NODE_ENV === "production") {
+	app.use(morgan('combined'));
+	app.use(helmet());
+	app.use(hpp());
+}
+else {
+	app.use(morgan("dev"));
+}
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 app.use("/", indexRouter);
@@ -36,11 +46,11 @@ app.use("/admin", adminRouter);
 
 sequelize.sync();
 
-app.use(flash());
-
 app.use((req, res, next) => {
 	const err = new Error("Not Found");
 	err.status = 404;
+	logger.info("hello");
+	logger.error(err.message);
 	next(err);
 });
 

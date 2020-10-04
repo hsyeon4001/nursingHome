@@ -3,6 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const jwtController = require("./jwtController");
+const accessController = require("./accessController");
 
 const { Post, User } = require("../models");
 
@@ -37,7 +38,7 @@ const upload2 = multer();
 
 
 
-router.post("/", jwtController.verify, upload.single("url"), async (req, res, next) => {
+router.post("/", jwtController.verify, accessController.chkStaff, upload.single("url"), async (req, res, next) => {
 	console.log(req.file, req.body);
 	let url = ``;
 	let user = null;
@@ -57,7 +58,7 @@ router.post("/", jwtController.verify, upload.single("url"), async (req, res, ne
 			title: req.body.title,
 			description: req.body.description,
 			img: url,
-			authorId: "hsyeon4001",
+			authorId: user,
 		});
 		console.log("here");
 
@@ -68,7 +69,7 @@ router.post("/", jwtController.verify, upload.single("url"), async (req, res, ne
 	}
 });
 
-router.get("/:id/edit", jwtController.verify, async (req, res) => {
+router.get("/:id/edit", jwtController.verify, accessController.chkAuthor, async (req, res) => {
 	const id = req.params.id;
 
 	try {
@@ -101,7 +102,7 @@ router.get("/:id/edit", jwtController.verify, async (req, res) => {
 	}
 });
 
-router.put("/:id/edit", jwtController.verify, upload.single("url"), async (req, res, next) => {
+router.put("/:id/edit", jwtController.verify, accessController.chkAuthor, upload.single("url"), async (req, res, next) => {
 	console.log(req.params);
 	let id = req.params.id;
 	let url = ``;
@@ -148,7 +149,7 @@ router.put("/:id/edit", jwtController.verify, upload.single("url"), async (req, 
 	}
 });
 
-router.delete("/:id/delete", jwtController.verify, async (req, res, next) => {
+router.delete("/:id/delete", jwtController.verify, accessController.chkAuthor, async (req, res, next) => {
 	try {
 
 		console.log('delete');

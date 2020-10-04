@@ -1,21 +1,28 @@
 <div class="join-form">
-	<form action="/join" method="POST">
+	<form action="/join" method="POST" name="joinForm">
 		<div>
 			<label for="id" class="join-form__label">아이디</label>
-			<input type="text" placeholder="아이디" name="id" id="id" />
+			<input type="text" placeholder="아이디" name="id" id="id" pattern="^[0-9a-z]{6,12}$"
+				title="6~12글자의 영어 소문자와 숫자만 입력해주십시오." required />
+			<button type="button" id="overlapChk">중복확인</button>
+			<span id="overlapRes">중복 여부</span>
 		</div>
+
 		<div>
 			<label for="password" class="join-form__label">비밀번호</label>
-			<input type="password" placeholder="비밀번호" name="password" id="password" class="join-form__password" />
+			<input type="password" placeholder="비밀번호" name="password" id="password" class="join-form__password"
+				pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
+				title="영어, 숫자, 특수문자를 모두 사용한 8~16글자의 비밀번호를 입력해주십시오." required />
 		</div>
 		<div>
 			<label for="name" class="join-form__label">이름</label>
-			<input type="text" placeholder="이름" name="name" id="name" />
+			<input type="text" placeholder="이름" name="name" id="name" pattern="^[가-힣]{2,}$" title="2글자 이상의 한글만 입력해주십시오."
+				required />
 		</div>
 		<div>
-			<label for="job" class="join-form__label">직무</label>
+			<label for="job" class="join-form__label">직급</label>
 			<div class="join-form__job">
-				<input type="radio" id="jobChoice1" name="job" value="social_worker" />
+				<input type="radio" id="jobChoice1" name="job" value="social_worker" required />
 				<label for="jobChoice1">사회복지사</label>
 				<input type="radio" id="jobChoice2" name="job" value="nutritionist" />
 				<label for="jobChoice2">영양사</label>
@@ -24,7 +31,7 @@
 			</div>
 		</div>
 		<div>
-			<input type="submit" value="가입" />
+			<button type="button" id="joinSubmit">가입</button>
 		</div>
 	</form>
 </div>

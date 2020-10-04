@@ -4,3 +4,4 @@ package-lock.json
 config
 uploads
 trash
+*.log

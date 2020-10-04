@@ -1,10 +1,11 @@
 const express = require("express");
 const { Post, User } = require("../models");
 const jwtController = require("./jwtController");
+const accessController = require("./accessController");
 
 const router = express.Router();
 
-router.get("/", jwtController.verify, (req, res) => {
+router.get("/", jwtController.verify, accessController.chkAdmin, (req, res) => {
     let user = null;
 
     if (res.locals.user) {
@@ -14,7 +15,7 @@ router.get("/", jwtController.verify, (req, res) => {
     res.render("index", { sub: "Admin", path: "관리", headline: "관리 메뉴", user: user });
 });
 
-router.get("/users", jwtController.verify, async (req, res, next) => {
+router.get("/users", jwtController.verify, accessController.chkAdmin, async (req, res, next) => {
     let user = null;
     if (res.locals.user) {
         user = res.locals.user;
@@ -59,7 +60,7 @@ router.get("/users", jwtController.verify, async (req, res, next) => {
     }
 });
 
-router.put("/users/:id/edit", jwtController.verify, async (req, res) => {
+router.put("/users/:id/edit", jwtController.verify, accessController.chkAdmin, async (req, res) => {
     console.log(req.body);
     console.log(req.params.id);
 
@@ -87,7 +88,7 @@ router.put("/users/:id/edit", jwtController.verify, async (req, res) => {
     }
 })
 
-router.delete("/users/:id/delete", jwtController.verify, async (req, res, next) => {
+router.delete("/users/:id/delete", jwtController.verify, accessController.chkAdmin, async (req, res, next) => {
     try {
 
         let id = req.params.id;
@@ -114,7 +115,7 @@ router.delete("/users/:id/delete", jwtController.verify, async (req, res, next) 
     }
 })
 
-router.get("/posts", jwtController.verify, async (req, res, next) => {
+router.get("/posts", jwtController.verify, accessController.chkAdmin, async (req, res, next) => {
     let user = null;
     if (res.locals.user) {
         user = res.locals.user;
@@ -157,7 +158,7 @@ router.get("/posts", jwtController.verify, async (req, res, next) => {
     }
 });
 
-router.delete("/posts/:id/delete", jwtController.verify, async (req, res, next) => {
+router.delete("/posts/:id/delete", jwtController.verify, accessController.chkAdmin, async (req, res, next) => {
     try {
 
         let id = req.params.id;

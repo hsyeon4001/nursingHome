@@ -5,7 +5,7 @@ const bcryptjs = require("bcryptjs");
 exports.create = async (req, res, next) => {
     let id = req.body.id;
     try {
-        let token = jwt.sign({ id: id }, process.env.JWT_SECRET, { expiresIn: "10m" });
+        let token = jwt.sign({ id: id }, process.env.JWT_SECRET, { expiresIn: "20m" });
         const user = await User.findOne({
             where: { id: id },
             attributes: ["password"]
@@ -24,7 +24,7 @@ exports.create = async (req, res, next) => {
                     </script>`);
             }
             else {
-                res.cookie("user", token);
+                res.cookie("user", token, { httpOnly: true });
                 return res.redirect("/");
             }
         })
@@ -43,7 +43,6 @@ exports.create = async (req, res, next) => {
 };
 
 exports.verify = (req, res, next) => {
-
     try {
         let token = req.cookies["user"];
 

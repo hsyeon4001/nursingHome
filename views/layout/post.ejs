@@ -2,12 +2,12 @@
 	<form action="/post" method="POST" enctype="multipart/form-data" id="form">
 		<div>
 			<label for="title" class="post-form__label">제목</label>
-			<input type="text" name="title" id="title" class="post-form__title" />
+			<input type="text" name="title" id="title" class="post-form__title" required />
 		</div>
 		<div>
 			<label for="category" class="post-form__label">분류</label>
 			<div id="category" class="post-form__category">
-				<input type="radio" id="category1" name="category" value="notice" />
+				<input type="radio" id="category1" name="category" value="notice" required />
 				<label for="category1">공지사항</label>
 				<input type="radio" id="category2" name="category" value="gallery" />
 				<label for="category2">갤러리</label>
