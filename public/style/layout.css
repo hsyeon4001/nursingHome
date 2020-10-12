@@ -3,22 +3,7 @@
 @import "header.css";
 @import "nav.css";
 @import "footer.css";
-@import "screen-menu.css";
-@import "board.css";
-@import "page.css";
 @import "reset.css";
-@import "post.css";
-@import "join.css";
-@import "postView.css";
-@import "admin.css";
-@import "userAdmin.css";
-@import "postAdmin.css";
-@import "way.css";
-@import "introduction.css";
-@import "admit.css";
-@import "space.css";
-@import "agency.css";
-
 
 /* Variables */
 @import "variables.css";
@@ -39,7 +24,7 @@
 	font-style: normal;
 }
 
-/* Layout default styles */
+/* Body styles */
 body {
 	width: 1535px;
 	background-color: whitesmoke;

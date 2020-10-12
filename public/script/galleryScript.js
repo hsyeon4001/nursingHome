@@ -12,6 +12,8 @@ let maxPage = Math.floor(postCnt / 6);
 const link = document.location.href;
 
 
+console.log(postCnt);
+
 if (postCnt < 30) {
     if (remainPost !== 0) {
         maxPage += 1;

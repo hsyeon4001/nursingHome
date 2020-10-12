@@ -1,16 +1,70 @@
+<% const layoutDir = "../public/layout/" %>
+<% const contentDir = "content/" %>
+<% const styleDir = "/style" %>
+<% const imageDir = "/image" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="shortcut icon" href="/images/flaticon.ico">
+	<link rel="shortcut icon" href="<%= imageDir %>/flaticon.ico">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 		integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
-	<link rel="stylesheet" href="/styles/layout.css" />
-	<link rel="stylesheet" href="/styles/main.css" />
-	<link rel="stylesheet" href="/styles/sub.css" />
+	<link rel="stylesheet" href="<%= styleDir %>/layout.css" />
+
+	<% if (sub === "Main") { %>
+	<link rel="stylesheet" href="<%= styleDir %>/main.css" />
+	<% } else { %>
+	<link rel="stylesheet" href="<%= styleDir %>/sub.css" />
+	<% } %>
+
+
+	<% switch (sub) { 
+		case "Introduction": %>
+	<link rel="stylesheet" href="<%= styleDir %>/introduction.css" />
+	<% break; %>
+	<% case "Way": %>
+	<link rel="stylesheet" href="<%= styleDir %>/way.css" />
+	<% break; %>
+	<% case "Admit": %>
+	<link rel="stylesheet" href="<%= styleDir %>/admit.css" />
+	<% break; %>
+	<% case "Space": %>
+	<link rel="stylesheet" href="<%= styleDir %>/space.css" />
+	<% break; %>
+	<% case "Agency": %>
+	<link rel="stylesheet" href="<%= styleDir %>/agency.css" />
+	<% break; %>
+	<% case "Gallery Detail": %>
+	<% case "Notice Detail": %>
+	<link rel="stylesheet" href="<%= styleDir %>/postView.css" />
+	<% break; %>
+	<% case "Post": %>
+	<% case "Edit": %>
+	<link rel="stylesheet" href="<%= styleDir %>/post.css" />
+	<% break; %>
+	<% case "Join": %>
+	<link rel="stylesheet" href="<%= styleDir %>/join.css" />
+	<% break; %>
+	<% case "Admin": %>
+	<link rel="stylesheet" href="<%= styleDir %>/admin.css" />
+	<% break; %>
+	<% case "Admin Users": %>
+	<link rel="stylesheet" href="<%= styleDir %>/userAdmin.css" />
+	<% break; %>
+	<% case "Admin Posts": %>
+	<link rel="stylesheet" href="<%= styleDir %>/postAdmin.css" />
+	<% break; %>
+	<% case "Notice": %>
+	<% case "Gallery": %>
+	<link rel="stylesheet" href="<%= styleDir %>/board.css" />
+	<link rel="stylesheet" href="<%= styleDir %>/page.css" />
+	<% break; %>
+	<% } %>
+
 	<title><%= sub %></title>
 	<% if (sub === "Way") { %>
 	<script type="text/javascript"
@@ -22,64 +76,65 @@
 
 	<div class="status-bar">
 		<% if (user && user !== null) { %>
-		<%- include ("../public/statusOut.html") %>
+		<%- include (layoutDir + "statusOut.html") %>
 		<% } else { %>
-		<%- include ("../public/statusIn.html") %>
+		<%- include (layoutDir + "statusIn.html") %>
 		<% } %>
 	</div>
-	<header class="header"><%- include ("../public/header.html") %></header>
-	<nav class="nav"><%- include ("../public/nav.html") %></nav>
+	<header class="header">
+		<%- include (layoutDir + "header.html") %>
+	</header>
+	<nav class="nav">
+		<%- include (layoutDir + "nav.html") %>
+	</nav>
 	<main>
 		<% if (sub === "Main") { %>
-		<%- include ("layout/main.ejs") %>
+		<%- include (contentDir + "main.ejs") %>
 		<% } else { %>
-		<%- include ("layout/sub.ejs") %>
+		<%- include (contentDir + "sub.ejs") %>
 		<% } %>
 	</main>
-	<footer class="footer"><%- include ("../public/footer.html") %></footer>
+	<footer class="footer">
+		<%- include (layoutDir + "footer.html") %>
+	</footer>
 	<script>
-		var cookies = document.cookie;
-		var cookieArr = cookies.split("; ");
-		console.log(cookieArr);
-		cookieArr.forEach((c) => {
-			if (c.substring(0, 4) === "user") {
-				console.log(c);
-				var user = c.substring(5, c.length);
+		const cookies = document.cookie;
+		const cookieArr = cookies.split("; ");
 
+		cookieArr.forEach((cookie) => {
+			if (cookie.substring(0, 4) === "user") {
+				const user = c.substring(5, cookie.length);
 			}
 		})
-
-		// console.log(document.querySelector("title").innerText);
-		// let status = document.querySelector(".status-bar");
-
-		// status.addEventListener("load", () => {
-		// 	let xhr = new XMLHttpRequest();
-		// 	xhr.open("GET", "/status");
-		// 	xhr.send();
-		// })
-
 	</script>
 	<script class="switch"></script>
 	<script>
-		let switchScript = document.querySelector(".switch");
+		const switchScript = document.querySelector(".switch");
+		const scriptDir = "/script/";
 
 		switch ("<%= sub %>") {
 			case "Notice":
 			case "Gallery":
-				switchScript.src = "/galleryScript.js";
+				switchScript.src = scriptDir + "galleryScript.js";
 				break;
 			case "Post":
+			case "Notice Detail":
+			case "Gallery Detail":
 			case "Edit":
-				switchScript.src = "/postScript.js";
+				switchScript.src = scriptDir + "postScript.js";
 				break;
 			case "Main":
-				switchScript.src = "/mainScript.js";
+				switchScript.src = scriptDir + "mainScript.js";
 				break;
 			case "Way":
-				switchScript.src = "/mapScript.js";
+				switchScript.src = scriptDir + "mapScript.js";
 				break;
 			case "Join":
-				switchScript.src = "/validateScript.js";
+				switchScript.src = scriptDir + "validateScript.js";
+				break;
+			case "Admin Users":
+			case "Admin Posts":
+				switchScript.src = scriptDir + "adminScript.js";
 				break;
 		}
 	</script>

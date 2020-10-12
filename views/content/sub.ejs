@@ -1,29 +1,34 @@
+<% const imageDir = "/image" %>
+<% const publicContentDir = "../../public/content/" %>
+<% const componentDir = "../component/" %>
+
 <section class="sub__img-section">
     <div class="sub__img-section--img">
         <% switch (sub) { 
             case "Introduction": %>
         <% case "Way": %>
-        <img src="/images/menu1.JPG" alt="" />
+        <img src="<%= imageDir %>/menu1.jpg" alt="메뉴이미지1" />
         <% break; %>
         <% case "Admit": %>
         <% case "Space": %>
-        <img src="/images/menu2.JPG" alt="" />
+        <img src="<%= imageDir %>/menu2.jpg" alt="메뉴이미지2" />
         <% break; %>
         <% case "Notice": %>
         <% case "Gallery": %>
         <% case "Gallery Detail": %>
         <% case "Notice Detail": %>
         <% case "Post": %>
-        <img src="/images/menu3.JPG" alt="" />
+        <img src="<%= imageDir %>/menu3.jpg" alt="메뉴이미지3" />
         <% break; %>
         <% case "Agency": %>
-        <img src="/images/menu4.JPG" alt="" />
+        <img src="<%= imageDir %>/menu4.jpg" alt="메뉴이미지4" />
         <% break; %>
         <% case "Join": %>
         <% case "Admin": %>
+        <% case "Edit": %>
         <% case "Admin Users": %>
         <% case "Admin Posts": %>
-        <img src="/images/cat9.JPG" alt="" />
+        <img src="<%= imageDir %>/cat9.jpg" alt="메뉴이미지5" />
         <% break; %>
         <% } %>
     </div>
@@ -38,23 +43,21 @@
 
     <% switch (sub) { 
         case "Introduction": %>
-    <%- include ("../../public/contents/introduction.html") %>
+    <%- include (publicContentDir + "introduction.html") %>
     <% break; %>
     <% case "Way": %>
-    <%- include ("../../public/contents/way.html") %>
+    <%- include (publicContentDir + "way.html") %>
     <% break; %>
     <% case "Admit": %>
-    <%- include ("../../public/contents/admit.html") %>
+    <%- include (publicContentDir + "admit.html") %>
     <% break; %>
     <% case "Space": %>
-    <%- include ("../../public/contents/space.html") %>
+    <%- include (publicContentDir + "space.html") %>
     <% break; %>
     <% case "Agency": %>
-    <%- include ("../../public/contents/agency.html") %>
+    <%- include (publicContentDir + "agency.html") %>
     <% break; %>
     <% case "Gallery Detail": %>
-    <%- include ("postView.ejs") %>
-    <% break; %>
     <% case "Notice Detail": %>
     <%- include ("postView.ejs") %>
     <% break; %>
@@ -68,21 +71,18 @@
     <%- include ("edit.ejs") %>
     <% break; %>
     <% case "Admin": %>
-    <%- include ("../../public/admin.html") %>
+    <%- include (publicContentDir + "admin.html") %>
     <% break; %>
     <% case "Admin Users": %>
-    <%- include ("../users.ejs") %>
+    <%- include ("userAdmin.ejs") %>
     <% break; %>
     <% case "Admin Posts": %>
-    <%- include ("../posts.ejs") %>
+    <%- include ("postAdmin.ejs") %>
     <% break; %>
     <% case "Notice": %>
-    <%- include ("board.ejs") %>
-    <%- include ("../../public/page.html") %>
-    <% break; %>
     <% case "Gallery": %>
-    <%- include ("board.ejs") %>
-    <%- include ("../../public/page.html") %>
+    <%- include (componentDir + "board.ejs") %>
+    <%- include (componentDir + "page.ejs") %>
     <% break; %>
     <% } %>
 </section>

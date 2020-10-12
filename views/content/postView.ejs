@@ -13,11 +13,11 @@
         </span>
     </div>
     <div class="post__contents">
-        <img src="<%= img %>" alt="" class="post__contents--img">
+        <img src="<%= img %>" alt="첨부 이미지" class="post__contents--img">
         <span class="post__contents--description"><%= description %></span>
     </div>
     <div class="post__btns">
-        <button class="post__btns--board" onclick="goBack()"><i class="fas fa-chevron-left"></i>
+        <button class="post__btns--board" onclick="history.go(-1);"><i class="fas fa-chevron-left"></i>
             메인</button>
         <div>
             <button class="post__btns--update" onclick="location.href = '/post/<%= id %>/edit'"><i
@@ -30,17 +30,3 @@
         </div>
     </div>
 </div>
-<script>
-    function confirmDelPost() {
-        if (confirm("게시글을 삭제하시겠습니까?") === true) {
-            document.delForm.submit();
-        }
-        else {
-            return false;
-        };
-    };
-
-    function goBack() {
-        window.history.go(-1);
-    }
-</script>

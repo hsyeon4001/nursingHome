@@ -6,13 +6,12 @@ const accessController = require("./accessController");
 const router = express.Router();
 
 router.get("/", jwtController.verify, (req, res) => {
-	console.log('here');
 	let user = null;
 
 	if (res.locals.user) {
 		user = res.locals.user;
 	}
-	console.log('main');
+
 	res.render("index", { sub: "Main", user: user });
 });
 

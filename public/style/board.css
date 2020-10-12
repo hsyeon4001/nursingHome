@@ -13,7 +13,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	margin: var(--main-margin);
+
 }
 .board__post {
 	width: 350px;

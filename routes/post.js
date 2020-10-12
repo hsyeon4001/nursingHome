@@ -129,7 +129,7 @@ router.put("/:id/edit", jwtController.verify, accessController.chkAuthor, upload
 			title: req.body.title,
 			description: req.body.description,
 			img: url,
-			authorId: "hsyeon4001",
+			authorId: user,
 		}, {
 			where: { postId: id }
 		});

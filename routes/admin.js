@@ -176,7 +176,7 @@ router.delete("/posts/:id/delete", jwtController.verify, accessController.chkAdm
         res.send(`
             <script>
             alert('삭제되었습니다.');
-            location.href = "/admin/users";
+            location.href = "/admin/posts";
             </script>`);
     }
     catch (error) {
