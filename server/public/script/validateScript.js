@@ -1,11 +1,11 @@
-var overlapChkBtn = document.getElementById("overlapChk");
-var overlapRes = document.getElementById("overlapRes");
+var duplicationChkBtn = document.getElementById("duplicationCheck");
+var checkRes = document.getElementById("checkRes");
 var joinSubmitBtn = document.getElementById("joinSubmit");
 
 var id = document.getElementById("id");
 
 
-function overlapChk() {
+function duplicationCheck() {
     if (id.value !== "") {
         var data = { 'id': id.value };
         data = JSON.stringify(data);
@@ -15,17 +15,17 @@ function overlapChk() {
                 if (xhr.status === 200 || xhr.status === 201) {
                     var result = xhr.responseText;
                     if (result.match("true")) {
-                        overlapRes.innerText = "사용 불가능";
+                        checkRes.innerText = "사용 불가능";
                     }
                     else {
-                        overlapRes.innerText = "사용 가능";
+                        checkRes.innerText = "사용 가능";
                     }
                 } else {
                     console.error(xhr.responseText);
                 }
             }
         };
-        xhr.open("POST", "/join/overlap");
+        xhr.open("POST", "/sign/duplication");
         xhr.setRequestHeader('Content-type', "application/json");
         xhr.send(data);
     };
@@ -40,5 +40,5 @@ function joinSubmit() {
     }
 }
 
-overlapChkBtn.addEventListener("click", overlapChk)
+duplicationChkBtn.addEventListener("click", duplicationCheck)
 joinSubmitBtn.addEventListener("click", joinSubmit)

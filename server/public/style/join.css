@@ -67,7 +67,7 @@
 	color: var(--mint);
 }
 
-#overlapChk {
+#duplicationCheck {
 	width: 50px;
 	font-size: 15px;
 	font-family: "JSDongkang-Bold";
@@ -75,7 +75,7 @@
 	background-color: var(--mint);
 }
 
-#overlapRes {
+#checkRes {
 	display: inline-block;
 	width: 100px;
 	height: 20px;

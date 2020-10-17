@@ -3,21 +3,20 @@ const { Post, User } = require("../models");
 
 exports.chkStaff = async (req, res, next) => {
     try {
-        let userId = res.locals.user;
-        console.log(userId);
-        if (!userId) {
+        let staffId = res.locals.user;
+        if (!staffId) {
+            res.clearCookie("user");
             return res.send(`<script>
             alert('로그인 후 이용 가능합니다.');
             history.back();
             </script>`)
         }
-        const user = await User.findOne({
-            where: { id: userId },
+        const staff = await User.findOne({
+            where: { id: staffId },
             attributes: ["grade"],
         })
-        console.log(user.grade);
 
-        if (user.grade === "guest") {
+        if (staff.grade === "guest") {
             return res.send(`<script>
             alert('접근 권한이 없습니다.');
             history.back();
@@ -35,10 +34,12 @@ exports.chkStaff = async (req, res, next) => {
 
 exports.chkAuthor = async (req, res, next) => {
     try {
+        console.log('hello?');
         let postId = req.params.id;
-        let userId = res.locals.user;
-
-        if (!userId) {
+        let authorId = res.locals.user;
+        console.log('1');
+        if (!authorId) {
+            res.clearCookie("user");
             return res.send(`<script>
             alert('로그인 후 이용 가능합니다.');
             history.back();
@@ -49,7 +50,7 @@ exports.chkAuthor = async (req, res, next) => {
             attributes: ["authorId"],
         })
 
-        if (post.authorId !== userId) {
+        if (post.authorId !== authorId) {
             return res.send(`<script>
             alert('접근 권한이 없습니다.');
             history.back();
@@ -70,6 +71,7 @@ exports.chkAdmin = async (req, res, next) => {
         let userId = res.locals.user;
 
         if (!userId) {
+            res.clearCookie("user");
             return res.send(`<script>
             alert('로그인 후 이용 가능합니다.');
             history.back();

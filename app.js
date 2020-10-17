@@ -7,18 +7,18 @@ const helmet = require("helmet");
 const hpp = require("hpp");
 require("dotenv").config();
 
-const indexRouter = require("./routes/index");
-const postRouter = require("./routes/post");
-const joinRouter = require("./routes/join");
-const signRouter = require("./routes/sign");
-const adminRouter = require("./routes/admin");
+const indexRouter = require("./server/routes/index");
+const postRouter = require("./server/routes/post");
+const signRouter = require("./server/routes/sign");
+const adminRouter = require("./server/routes/admin");
 
-const { sequelize } = require("./models");
-const logger = require("./logger");
+const { sequelize } = require("./server/models");
+const logger = require("./server/logs/logger");
 
 const app = express();
 
-app.set("views", path.join(__dirname, "views"));
+
+app.set("views", path.join(__dirname, "server", "views"));
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 8001);
 
@@ -32,7 +32,7 @@ else {
 }
 
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "server", "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,7 +40,6 @@ app.use(methodOverride("_method"));
 
 app.use("/", indexRouter);
 app.use("/post", postRouter);
-app.use("/join", joinRouter);
 app.use("/sign", signRouter);
 app.use("/admin", adminRouter);
 
@@ -58,7 +57,7 @@ app.use((err, req, res, next) => {
 	res.locals.message = err.message;
 	res.locals.error = req.app.get("env") === "development" ? err : {};
 	res.status(err.status || 500);
-	res.render("error");
+	res.render("error", { error: err });
 });
 
 app.listen(app.get("port"), () => {
