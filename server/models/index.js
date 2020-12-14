@@ -8,18 +8,18 @@ const sequelize = new Sequelize(
 	config.username,
 	config.password,
 	{
-		host: '127.0.0.1',
-		dialect: 'mysql',
+		host: "127.0.0.1",
+		dialect: "mysql",
 		dialectOptions: {
-			charset: 'utf8mb4',
+			charset: "utf8mb4",
 			dateStrings: true,
-			typeCast: true
+			typeCast: true,
 		},
 		pool: {
-			max: 20,   // 최대 유지 connection 수
-			min: 5,    // 최소 유지 connection 수
-			idle: 60000 // connection을 몇ms까지 대기시킬 것인가 (이후엔 버려짐)
-		}
+			max: 20,
+			min: 5,
+			idle: 60000,
+		},
 	}
 );
 
@@ -30,5 +30,6 @@ db.Post = require("./post")(sequelize, Sequelize);
 db.Post.belongsTo(db.User, {
 	foreignKey: { name: "authorId", allowNull: false },
 });
+db.Op = Sequelize.Op;
 
 module.exports = db;

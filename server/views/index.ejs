@@ -60,6 +60,7 @@
 	<% break; %>
 	<% case "Notice": %>
 	<% case "Gallery": %>
+	<% case "Search": %>
 	<link rel="stylesheet" href="<%= styleDir %>/board.css" />
 	<link rel="stylesheet" href="<%= styleDir %>/page.css" />
 	<% break; %>
@@ -115,6 +116,7 @@
 		switch ("<%= sub %>") {
 			case "Notice":
 			case "Gallery":
+			case "Search":
 				switchScript.src = scriptDir + "galleryScript.js";
 				break;
 			case "Post":
