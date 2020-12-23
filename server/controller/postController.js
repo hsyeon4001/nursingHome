@@ -1,24 +1,30 @@
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const AWS = require("aws-sdk");
+const multerS3 = require("multer-s3");
 
 const { Post } = require("../models");
 
-fs.readdir("uploads", (error) => {
-	if (error) {
-		console.error("upload폴더가 없어 upload폴더를 생성합니다.");
-		fs.mkdirSync("uploads");
-	}
+// fs.readdir("uploads", (error) => {
+// 	if (error) {
+// 		console.error("upload폴더가 없어 upload폴더를 생성합니다.");
+// 		fs.mkdirSync("uploads");
+// 	}
+// });
+
+AWS.config.update({
+	accessKeyId: process.env.S3_ACCESS_KEY_ID,
+	secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+	region: "ap-northeast-2",
 });
 
 exports.upload = multer({
-	storage: multer.diskStorage({
-		destination(req, file, cb) {
-			cb(null, "uploads/");
-		},
-		filename(req, file, cb) {
-			const ext = path.extname(file.originalname);
-			cb(null, path.basename(file.originalname, ext) + Date.now() + ext);
+	storage: multerS3({
+		s3: new AWS.S3(),
+		bucket: "nursing-home-images",
+		key(req, file, cb) {
+			cb(null, `original/${+new Date()}${path.basename(file.originalname)}`);
 		},
 	}),
 	limits: { fileSize: 5 * 1024 * 1024 },
@@ -26,10 +32,12 @@ exports.upload = multer({
 
 exports.createPost = async (req, res, next) => {
 	let url = ``;
-
+	console.log(req.file);
 	if (req.file) {
-		url = `/uploads/${req.file.filename}`;
-    }
+		url = req.file.location;
+		// url = originalUrl.replace(/\/original\//, "/thumb/");
+		// url = `/uploads/${req.file.filename}`;
+	}
 
 	try {
 		await Post.create({
@@ -45,26 +53,27 @@ exports.createPost = async (req, res, next) => {
 		console.error(error);
 		next(error);
 	}
-}
+};
 
 exports.readPostEdit = async (req, res, next) => {
 	try {
-        const id = req.params.id;
+		const id = req.params.id;
 
 		const readPostEdit = await Post.findOne({
 			where: { postId: id },
 			attributes: ["postId", "title", "description", "img", "category"],
-		}).then(post => { return post.dataValues });
+		}).then((post) => {
+			return post.dataValues;
+		});
 
 		res.locals.readPostEdit = readPostEdit;
 
 		next();
-	}
-	catch {
+	} catch {
 		console.error(error);
 		next(error);
 	}
-}
+};
 
 exports.updatePost = async (req, res, next) => {
 	try {
@@ -76,22 +85,27 @@ exports.updatePost = async (req, res, next) => {
 		}
 		const prevPost = await Post.findOne({
 			where: { postId: id },
-			attributes: ["img"]
-		}).then(post => { return post });
+			attributes: ["img"],
+		}).then((post) => {
+			return post;
+		});
 
-		await Post.update({
-			category: req.body.category,
-			title: req.body.title,
-			description: req.body.description,
-			img: url,
-			authorId: res.locals.user,
-		}, {
-			where: { postId: id }
-		})
+		await Post.update(
+			{
+				category: req.body.category,
+				title: req.body.title,
+				description: req.body.description,
+				img: url,
+				authorId: res.locals.user,
+			},
+			{
+				where: { postId: id },
+			}
+		);
 
 		const path = `../nursinghome/${prevPost.img}`;
 
-		if (prevPost.img !== '' && path) {
+		if (prevPost.img !== "" && path) {
 			fs.unlink(path, function (err) {
 				if (err) throw err;
 			});
@@ -99,12 +113,11 @@ exports.updatePost = async (req, res, next) => {
 		console.log(req.route);
 
 		res.redirect("/");
-
 	} catch (error) {
 		console.error(error);
 		next(error);
 	}
-}
+};
 
 exports.deletePost = async (req, res, next) => {
 	try {
@@ -112,19 +125,21 @@ exports.deletePost = async (req, res, next) => {
 
 		const prevPost = await Post.findOne({
 			where: { postId: id },
-			attributes: ["img"]
-		}).then(post => { return post });
+			attributes: ["img"],
+		}).then((post) => {
+			return post;
+		});
 
 		await Post.destroy({
-			where: { postId: id }
+			where: { postId: id },
 		});
 
 		const path = `../nursinghome/${prevPost.img}`;
 
-		if (prevPost.img !== '' && path) {
+		if (prevPost.img !== "" && path) {
 			fs.unlink(path, function (err) {
 				if (err) throw err;
-			})
+			});
 		}
 
 		res.send(`
@@ -133,11 +148,8 @@ exports.deletePost = async (req, res, next) => {
                     location.replace("/");
 					</script>
 				`);
-	}
-	catch (error) {
+	} catch (error) {
 		console.error(error);
 		next(error);
 	}
-
-}
-
+};

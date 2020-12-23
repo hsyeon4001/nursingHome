@@ -21,14 +21,14 @@ module.exports = (sequelize, Sequelize) => {
 				allowNull: false,
 			},
 			img: {
-				type: Sequelize.STRING(100),
+				type: Sequelize.STRING(150),
 				allowNull: true,
 			},
 		},
 		{
 			timestamps: true,
-			updatedAt: 'updated_at',
-			createdAt: 'created_at',
+			updatedAt: "updated_at",
+			createdAt: "created_at",
 			charset: "utf8",
 			collate: "utf8_general_ci",
 		}

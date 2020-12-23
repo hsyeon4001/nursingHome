@@ -1,13 +1,9 @@
 <div class="page">
 	<ul>
 		<button class="page__prev"><</button>
-				<div class="page__number">
-					<a href="/gallery/1">1</a>
-					<a href="/gallery/2">2</a>
-					<a href="/gallery/3">3</a>
-					<a href="/gallery/4">4</a>
-					<a href="/gallery/5">5</a>
-				</div>
+		<div class="page__number" data-count="<%= posts %>">
+
+		</div>
 		<button class="page__next">></button>
 	</ul>
 	<form action="/search" method="POST">
