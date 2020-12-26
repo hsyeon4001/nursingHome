@@ -25,7 +25,7 @@ if (postCnt < 30) {
 }
 
 prev.addEventListener("click", function (e) {
-	if (postCnt > 30 && parseInt(presentNum) !== 1) {
+	if (postCnt >= 30 && parseInt(presentNum) !== 1) {
 		for (i = 0; i < nums.length; i++) {
 			let pageNum = parseInt(nums.children[i].innerText);
 			nums.children[i].innerText = pageNum - 5;
@@ -33,7 +33,7 @@ prev.addEventListener("click", function (e) {
 	}
 });
 next.addEventListener("click", function (e) {
-	if (postCnt > 30 && parseInt(presentNum) !== maxPage) {
+	if (postCnt >= 30 && parseInt(presentNum) !== maxPage) {
 		for (i = 0; i < nums.length; i++) {
 			let pageNum = parseInt(nums.children[i].innerText);
 			nums.children[i].innerText = pageNum + 5;

@@ -1,57 +1,59 @@
 .post {
-    padding: 50px 0;
+	padding: 50px 0;
 }
 
-.post__title, .post__information, .post__contents {
-    margin: 20px 0;
-
+.post__title,
+.post__information,
+.post__contents {
+	margin: 20px 0;
 }
 
 .post__title {
-    font-size: 30px;
+	font-size: 30px;
 }
 .post__information {
-    font-family: "JSDongkang-Regular";
-    font-size: 15px;
-    opacity: 0.7;
+	font-family: "JSDongkang-Regular";
+	font-size: 15px;
+	opacity: 0.7;
 }
 
 .post__information i {
-    color: var(--mint);
-    margin: 0 3px;
+	color: var(--mint);
+	margin: 0 3px;
 }
 
 .post__information--date {
-    border-right: 1px solid grey;
-    margin-right: 16px;
-    padding-right: 10px;
+	border-right: 1px solid grey;
+	margin-right: 16px;
+	padding-right: 10px;
 }
 
-.post__contents--img {
+/* .post__contents--img {
     width: 800px;
     height: auto;
-}
+} */
 
 .post__contents--description {
-    display: block;
-    margin: 20px 0;
-    font-family: "JSDongkang-Regular";
+	display: block;
+	margin: 20px 0;
+	font-family: "JSDongkang-Regular";
 }
 
 .post__btns button {
-    font-family: "JSDongkang-Bold";
-    font-size: 15px;
-    width: 170px;
-    height: 50px;
-    border: 2px solid var(--mint);
-    color: var(--mint);
+	font-family: "JSDongkang-Bold";
+	font-size: 15px;
+	width: 170px;
+	height: 50px;
+	border: 2px solid var(--mint);
+	color: var(--mint);
 }
 
-.post__btns, .post__btns > div {
-    display: flex;
-    justify-content: space-between;
+.post__btns,
+.post__btns > div {
+	display: flex;
+	justify-content: space-between;
 }
 
 .post__btns > div {
-    width: 360px;
+	width: 360px;
 }

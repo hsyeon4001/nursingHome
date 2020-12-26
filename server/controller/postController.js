@@ -1,19 +1,11 @@
 const multer = require("multer");
 const path = require("path");
-const fs = require("fs");
 const AWS = require("aws-sdk");
 const multerS3 = require("multer-s3");
 
 const { Post } = require("../models");
 
-// fs.readdir("uploads", (error) => {
-// 	if (error) {
-// 		console.error("upload폴더가 없어 upload폴더를 생성합니다.");
-// 		fs.mkdirSync("uploads");
-// 	}
-// });
-
-AWS.config.update({
+const s3 = new AWS.S3({
 	accessKeyId: process.env.S3_ACCESS_KEY_ID,
 	secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
 	region: "ap-northeast-2",
@@ -21,7 +13,7 @@ AWS.config.update({
 
 exports.upload = multer({
 	storage: multerS3({
-		s3: new AWS.S3(),
+		s3: s3,
 		bucket: "nursing-home-images",
 		key(req, file, cb) {
 			cb(null, `original/${+new Date()}${path.basename(file.originalname)}`);
@@ -30,13 +22,41 @@ exports.upload = multer({
 	limits: { fileSize: 5 * 1024 * 1024 },
 });
 
+const deleteS3 = async (prevPost) => {
+	const prevUrl = prevPost.img.split("/");
+	const fileName = decodeURIComponent(prevUrl[prevUrl.length - 1]);
+	const params = {
+		Bucket: "nursing-home-images",
+		Delete: {
+			Objects: [
+				{
+					Key: `resized/${fileName}`,
+				},
+				{
+					Key: `original/${fileName}`,
+				},
+			],
+		},
+	};
+
+	await s3
+		.deleteObjects(params, (err, data) => {
+			if (err) {
+				console.log(err, err.stack);
+			} else console.log(data);
+		})
+		.promise();
+};
+
 exports.createPost = async (req, res, next) => {
 	let url = ``;
-	console.log(req.file);
+
 	if (req.file) {
-		url = req.file.location;
-		// url = originalUrl.replace(/\/original\//, "/thumb/");
-		// url = `/uploads/${req.file.filename}`;
+		const originalUrl = req.file.location;
+		const ext = originalUrl.split(".")[originalUrl.split(".").length - 1];
+		url = originalUrl.replace(/\/original\//, "/resized/");
+		url = url.replace(`.${ext}`, ".jpg");
+		console.log(ext, url);
 	}
 
 	try {
@@ -81,8 +101,12 @@ exports.updatePost = async (req, res, next) => {
 		let url = ``;
 
 		if (req.file) {
-			url = `/uploads/${req.file.filename}`;
+			const originalUrl = req.file.location;
+			const ext = originalUrl.split(".")[originalUrl.split(".").length - 1];
+			url = originalUrl.replace(/\/original\//, "/resized/");
+			url = url.replace(`.${ext}`, ".jpg");
 		}
+
 		const prevPost = await Post.findOne({
 			where: { postId: id },
 			attributes: ["img"],
@@ -103,14 +127,7 @@ exports.updatePost = async (req, res, next) => {
 			}
 		);
 
-		const path = `../nursinghome/${prevPost.img}`;
-
-		if (prevPost.img !== "" && path) {
-			fs.unlink(path, function (err) {
-				if (err) throw err;
-			});
-		}
-		console.log(req.route);
+		await deleteS3(prevPost);
 
 		res.redirect("/");
 	} catch (error) {
@@ -134,13 +151,7 @@ exports.deletePost = async (req, res, next) => {
 			where: { postId: id },
 		});
 
-		const path = `../nursinghome/${prevPost.img}`;
-
-		if (prevPost.img !== "" && path) {
-			fs.unlink(path, function (err) {
-				if (err) throw err;
-			});
-		}
+		await deleteS3(prevPost);
 
 		res.send(`
                     <script>
