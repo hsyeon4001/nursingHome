@@ -9,6 +9,9 @@ router.all(routesVariables.common.path, jwtController.verify);
 router.post(routesVariables.signIn.path, jwtController.create);
 router.get(routesVariables.signOut.path, signController.signOut);
 router.post(routesVariables.signUp.path, signController.createUser);
-router.post(routesVariables.signDuplication.path, signController.checkDuplication);
+router.post(
+	routesVariables.signDuplication.path,
+	signController.checkDuplication
+);
 
 module.exports = router;

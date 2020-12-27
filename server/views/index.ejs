@@ -98,16 +98,16 @@
 	<footer class="footer">
 		<%- include (layoutDir + "footer.html") %>
 	</footer>
-	<script>
+	<!-- <script>
 		const cookies = document.cookie;
 		const cookieArr = cookies.split("; ");
 
 		cookieArr.forEach((cookie) => {
 			if (cookie.substring(0, 4) === "user") {
-				const user = c.substring(5, cookie.length);
+				const user = cookie.substring(5, cookie.length);
 			}
 		})
-	</script>
+	</script> -->
 	<script class="switch"></script>
 	<script>
 		const switchScript = document.querySelector(".switch");
