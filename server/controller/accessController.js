@@ -3,10 +3,8 @@ const { Post, User } = require("../models");
 exports.chkStaff = async (req, res, next) => {
 	try {
 		let staffId = res.locals.user;
-		if (staffId === null) {
-			console.log("1");
+		if (!staffId) {
 			res.clearCookie("user");
-			console.log("2");
 			return res.send(`<script>
             alert('로그인 후 이용 가능합니다.');
             history.back();
@@ -33,11 +31,10 @@ exports.chkStaff = async (req, res, next) => {
 
 exports.chkAuthor = async (req, res, next) => {
 	try {
-		console.log("hello?");
 		let postId = req.params.id;
 		let authorId = res.locals.user;
-		console.log("1");
-		if (authorId === null) {
+
+		if (!authorId) {
 			res.clearCookie("user");
 			return res.send(`<script>
             alert('로그인 후 이용 가능합니다.');
@@ -67,7 +64,7 @@ exports.chkAdmin = async (req, res, next) => {
 	try {
 		let userId = res.locals.user;
 
-		if (userId === null) {
+		if (!userId) {
 			res.clearCookie("user");
 			return res.send(`<script>
             alert('로그인 후 이용 가능합니다.');

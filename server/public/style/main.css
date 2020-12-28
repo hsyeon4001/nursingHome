@@ -5,7 +5,6 @@ main {
 .main__img-section {
 	height: 800px;
 	position: relative;
-	z-index: -1;
 }
 
 .main__img-section--img {
@@ -14,6 +13,7 @@ main {
 	width: 100%;
 	height: inherit;
 	overflow: hidden;
+	z-index: -1;
 }
 
 .main__img-section--img > img {
@@ -47,30 +47,31 @@ main {
 	left: -5px;
 }
 
-.main__img-section--btns > button {
-	font-family: "JSDongkang-Bold";
-	font-size: 20px;
+.main__img-section--btns > a {
+	display: inline-block;
 	width: 150px;
 	height: 50px;
 	margin: 25px 7px;
+	font-family: "JSDongkang-Bold";
+	font-size: 20px;
+	text-align: center;
+	line-height: 50px;
 }
 
-.main__img-section--btns > button:first-child {
+.main__img-section--btns > a:first-child {
 	background-color: var(--mint);
 	color: whitesmoke;
 }
 
-.main__img-section--btns > button:last-child {
+.main__img-section--btns > a:last-child {
 	background-color: whitesmoke;
 	color: var(--mint);
 }
-
 
 .main__contents-section {
 	margin: var(--main-margin);
 	padding: 60px 0;
 }
-
 
 .main__contents-section--headline > span {
 	width: inherit;

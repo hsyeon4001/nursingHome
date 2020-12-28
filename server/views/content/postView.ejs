@@ -13,7 +13,9 @@
         </span>
     </div>
     <div class="post__contents">
+        <% if (img) { %>
         <img src="<%= img %>" alt="첨부 이미지" class="post__contents--img">
+        <% } %>
         <span class="post__contents--description"><%= description %></span>
     </div>
     <div class="post__btns">

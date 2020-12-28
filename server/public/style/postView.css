@@ -37,6 +37,7 @@
 	display: block;
 	margin: 20px 0;
 	font-family: "JSDongkang-Regular";
+	white-space: pre-line;
 }
 
 .post__btns button {

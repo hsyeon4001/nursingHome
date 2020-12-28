@@ -5,7 +5,7 @@
 	"main": "app.js",
 	"scripts": {
 		"dev": "nodemon app",
-		"start": "cross-env NODE_ENV=production PORT=80 pm2 start app.js -i -1"
+		"start": "cross-env NODE_ENV=production PORT=2021 pm2 start app.js -i -1"
 	},
 	"author": "hsyeon4001",
 	"license": "MIT",

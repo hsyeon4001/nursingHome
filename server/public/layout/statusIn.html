@@ -1,8 +1,8 @@
 <div>
-	<form action="/sign/in" method="POST" class="status-bar__login-form">
-		<input type="text" name="id" class="status-bar__login-form--id" placeholder="ID" />
-		<input type="password" name="password" class="status-bar__login-form--pw" placeholder="PASSWORD" />
-		<button type="submit" class="status-bar__login-form--login">
+	<form action="/sign/in" method="POST" class="status-bar__login-form" name="signForm">
+		<input type="text" id="sign_id" name="id" class="status-bar__login-form--id" placeholder="ID" />
+		<input type="password" id="sign_pw" name="password" class="status-bar__login-form--pw" placeholder="PASSWORD" />
+		<button type="button" class="status-bar__login-form--login" id="sign">
 			<i class="fas fa-sign-in-alt"></i>
 		</button>
 	</form>
