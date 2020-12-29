@@ -16,7 +16,12 @@ exports.upload = multer({
 		s3: s3,
 		bucket: "nursing-home-images",
 		key(req, file, cb) {
-			cb(null, `original/${+new Date()}${path.basename(file.originalname)}`);
+			cb(
+				null,
+				`original/${+new Date()}${path
+					.basename(file.originalname)
+					.toLowerCase()}`
+			);
 		},
 	}),
 	limits: { fileSize: 5 * 1024 * 1024 },
