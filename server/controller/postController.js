@@ -48,7 +48,7 @@ const deleteS3 = async (prevPost) => {
 		.deleteObjects(params, (err, data) => {
 			if (err) {
 				console.log(err, err.stack);
-			} else console.log(data);
+			}
 		})
 		.promise();
 };
@@ -61,7 +61,6 @@ exports.createPost = async (req, res, next) => {
 		const ext = originalUrl.split(".")[originalUrl.split(".").length - 1];
 		url = originalUrl.replace(/\/original\//, "/resized/");
 		url = url.replace(`.${ext}`, ".jpg");
-		console.log(ext, url);
 	}
 
 	try {
@@ -72,7 +71,6 @@ exports.createPost = async (req, res, next) => {
 			img: url,
 			authorId: res.locals.user,
 		});
-		console.log(req.route);
 		res.redirect("/");
 	} catch (error) {
 		console.error(error);

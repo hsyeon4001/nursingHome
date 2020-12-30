@@ -1,7 +1,6 @@
-const { Post, User } = require("../models");
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
-const { LexModelBuildingService } = require("aws-sdk");
+const { User } = require("../models");
 
 exports.create = async (req, res, next) => {
 	try {
@@ -59,7 +58,6 @@ exports.verify = (req, res, next) => {
 					res.locals.user = decoded.id;
 				}
 			});
-			console.log("jwtController.verify passed");
 			next();
 		}
 	} catch {
